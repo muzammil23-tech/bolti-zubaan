@@ -4,6 +4,14 @@ import { cn } from "@/lib/utils";
 
 type Animation = "fade-in-up" | "fade-in" | "scale-in" | "slide-in-left" | "slide-in-right";
 
+const animationClass: Record<Animation, string> = {
+  "fade-in-up": "animate-fade-in-up",
+  "fade-in": "animate-fade-in",
+  "scale-in": "animate-scale-in",
+  "slide-in-left": "animate-slide-in-left",
+  "slide-in-right": "animate-slide-in-right",
+};
+
 interface RevealProps {
   children: ReactNode;
   animation?: Animation;
@@ -20,7 +28,7 @@ export const Reveal = ({ children, animation = "fade-in-up", delay = 0, classNam
       style={{ animationDelay: inView ? `${delay}ms` : undefined }}
       className={cn(
         "opacity-0 will-change-transform",
-        inView && `animate-${animation} opacity-100`,
+        inView && `${animationClass[animation]} opacity-100`,
         className,
       )}
     >
