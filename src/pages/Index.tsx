@@ -31,6 +31,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import heroVisual from "@/assets/hero-visual.jpg";
@@ -109,6 +113,30 @@ const faqs = [
   { q: "Payment plan kya hai?", a: "50% advance, 50% delivery pe. Bank transfer, JazzCash, aur Easypaisa sab accept karte hain." },
   { q: "Kya aap outside Karachi bhi kaam karte hain?", a: "Bilkul! Hum Pakistan bhar aur international clients ke saath online kaam karte hain — WhatsApp aur Zoom pe pura coordination." },
   { q: "Website ke baad support milega?", a: "Ji — 7 din free support included hai. Us ke baad monthly maintenance packages available hain." },
+];
+
+const pricingTiers = [
+  {
+    name: "Starter",
+    price: "9,999",
+    tagline: "Naya business launch karna hai",
+    features: ["5-page responsive website", "Mobile-friendly design", "Basic SEO setup", "Contact form", "1 week free support"],
+    popular: false,
+  },
+  {
+    name: "Business",
+    price: "24,999",
+    tagline: "Growing brand ke liye complete package",
+    features: ["10-page premium website", "Custom UI/UX design", "Logo + basic branding", "Advanced SEO + analytics", "WhatsApp integration", "1 month free support"],
+    popular: true,
+  },
+  {
+    name: "Premium",
+    price: "49,999",
+    tagline: "E-commerce ya custom features",
+    features: ["E-commerce / custom app", "Complete brand identity", "Payment gateway integration", "Admin dashboard / CMS", "Advanced SEO + speed optimization", "3 months free support"],
+    popular: false,
+  },
 ];
 
 // ----- Lead Form -----
@@ -203,6 +231,7 @@ const LeadForm = () => {
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const autoplay = useRef(Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }));
 
   return (
     <div className="min-h-screen bg-background">
@@ -219,11 +248,12 @@ const Index = () => {
             </div>
           </a>
           <nav className="hidden items-center gap-8 md:flex">
-            {["Services", "Portfolio", "Why Us", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase().replace(" ", "-")}`} className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">
+            {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l) => (
+              <a key={l} href={`#${l.toLowerCase()}`} className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">
                 {l}
               </a>
             ))}
+            <Link to="/blog" className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">Blog</Link>
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
             <Button className="bg-gradient-accent text-accent-foreground hover:opacity-90 shadow-accent">
@@ -237,11 +267,12 @@ const Index = () => {
         {menuOpen && (
           <div className="animate-fade-in border-t border-border md:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
-              {["Services", "Portfolio", "Why Us", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase().replace(" ", "-")}`} onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
+              {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l) => (
+                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
                   {l}
                 </a>
               ))}
+              <Link to="/blog" onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">Blog</Link>
               <a href={WHATSAPP} target="_blank" rel="noreferrer">
                 <Button className="mt-2 w-full bg-gradient-accent text-accent-foreground">WhatsApp Us</Button>
               </a>
