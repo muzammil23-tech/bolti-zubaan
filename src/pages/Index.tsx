@@ -31,6 +31,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import heroVisual from "@/assets/hero-visual.jpg";
@@ -109,6 +113,30 @@ const faqs = [
   { q: "Payment plan kya hai?", a: "50% advance, 50% delivery pe. Bank transfer, JazzCash, aur Easypaisa sab accept karte hain." },
   { q: "Kya aap outside Karachi bhi kaam karte hain?", a: "Bilkul! Hum Pakistan bhar aur international clients ke saath online kaam karte hain — WhatsApp aur Zoom pe pura coordination." },
   { q: "Website ke baad support milega?", a: "Ji — 7 din free support included hai. Us ke baad monthly maintenance packages available hain." },
+];
+
+const pricingTiers = [
+  {
+    name: "Starter",
+    price: "9,999",
+    tagline: "Naya business launch karna hai",
+    features: ["5-page responsive website", "Mobile-friendly design", "Basic SEO setup", "Contact form", "1 week free support"],
+    popular: false,
+  },
+  {
+    name: "Business",
+    price: "24,999",
+    tagline: "Growing brand ke liye complete package",
+    features: ["10-page premium website", "Custom UI/UX design", "Logo + basic branding", "Advanced SEO + analytics", "WhatsApp integration", "1 month free support"],
+    popular: true,
+  },
+  {
+    name: "Premium",
+    price: "49,999",
+    tagline: "E-commerce ya custom features",
+    features: ["E-commerce / custom app", "Complete brand identity", "Payment gateway integration", "Admin dashboard / CMS", "Advanced SEO + speed optimization", "3 months free support"],
+    popular: false,
+  },
 ];
 
 // ----- Lead Form -----
@@ -203,6 +231,7 @@ const LeadForm = () => {
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const autoplay = useRef(Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }));
 
   return (
     <div className="min-h-screen bg-background">
@@ -219,11 +248,12 @@ const Index = () => {
             </div>
           </a>
           <nav className="hidden items-center gap-8 md:flex">
-            {["Services", "Portfolio", "Why Us", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase().replace(" ", "-")}`} className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">
+            {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l) => (
+              <a key={l} href={`#${l.toLowerCase()}`} className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">
                 {l}
               </a>
             ))}
+            <Link to="/blog" className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">Blog</Link>
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
             <Button className="bg-gradient-accent text-accent-foreground hover:opacity-90 shadow-accent">
@@ -237,11 +267,12 @@ const Index = () => {
         {menuOpen && (
           <div className="animate-fade-in border-t border-border md:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
-              {["Services", "Portfolio", "Why Us", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase().replace(" ", "-")}`} onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
+              {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l) => (
+                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
                   {l}
                 </a>
               ))}
+              <Link to="/blog" onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">Blog</Link>
               <a href={WHATSAPP} target="_blank" rel="noreferrer">
                 <Button className="mt-2 w-full bg-gradient-accent text-accent-foreground">WhatsApp Us</Button>
               </a>
@@ -455,87 +486,101 @@ const Index = () => {
               Real feedback from businesses we've grown. No paid reviews, no fake stars.
             </p>
           </Reveal>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 100} className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-card transition-smooth hover:-translate-y-1 hover:border-accent/40 hover:shadow-elegant">
-                <Quote className="h-8 w-8 text-accent/40 transition-smooth group-hover:text-accent" />
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground">"{t.text}"</p>
-                <div className="mt-5 flex items-center gap-0.5">
-                  {Array.from({ length: t.rating }).map((_, s) => (
-                    <Star key={s} className="h-4 w-4 fill-accent text-accent" />
-                  ))}
-                </div>
-                <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent font-semibold text-accent-foreground">
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-primary">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role}</div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <Carousel
+              plugins={[autoplay.current]}
+              opts={{ loop: true, align: "start" }}
+              onMouseEnter={autoplay.current.stop}
+              onMouseLeave={autoplay.current.reset}
+              className="relative"
+            >
+              <CarouselContent className="-ml-4">
+                {testimonials.map((t) => (
+                  <CarouselItem key={t.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-card transition-smooth hover:-translate-y-1 hover:border-accent/40 hover:shadow-elegant">
+                      <Quote className="h-8 w-8 text-accent/40 transition-smooth group-hover:text-accent" />
+                      <p className="mt-4 flex-1 text-base leading-relaxed text-foreground">"{t.text}"</p>
+                      <div className="mt-5 flex items-center gap-0.5">
+                        {Array.from({ length: t.rating }).map((_, s) => (
+                          <Star key={s} className="h-4 w-4 fill-accent text-accent" />
+                        ))}
+                      </div>
+                      <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent font-semibold text-accent-foreground">
+                          {t.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-primary">{t.name}</div>
+                          <div className="text-xs text-muted-foreground">{t.role}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-4 border-accent/40 text-accent hover:bg-accent hover:text-accent-foreground" />
+              <CarouselNext className="hidden md:flex -right-4 border-accent/40 text-accent hover:bg-accent hover:text-accent-foreground" />
+            </Carousel>
+          </Reveal>
         </div>
       </section>
 
-      {/* PRICING / OFFER */}
+      {/* PRICING */}
       <section id="pricing" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-hero p-8 md:p-14">
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent/30 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
-          <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div className="text-primary-foreground">
-              <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
-                Limited Time Offer
-              </span>
-              <h2 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">
-                Website Development <br /> in just{" "}
-                <span className="rounded-lg bg-accent px-3 py-1 text-accent-foreground">PKR 9,999</span>
-              </h2>
-              <p className="mt-5 max-w-lg text-primary-foreground/80">
-                Modern. Mobile-friendly. Built with the latest tech. Turn visitors into customers without the enterprise price tag.
-              </p>
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                {["UI/UX Focused Design", "100% Mobile Responsive", "Built with Latest Tech", "SEO-Ready Structure", "Contact Form Integration", "1 Week Free Support"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-primary-foreground/90">
-                    <Check className="h-4 w-4 flex-none text-accent" /> {f}
+        <Reveal className="mb-16 max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Pricing</span>
+          <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            Transparent packages, <span className="text-accent">no hidden costs.</span>
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Har budget ke liye ek option. Aap ka business grow karega — hamara pricing ustable rahega.
+          </p>
+        </Reveal>
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {pricingTiers.map((tier, i) => (
+            <Reveal
+              key={tier.name}
+              delay={i * 120}
+              className={`relative flex flex-col rounded-3xl border p-8 transition-smooth hover:-translate-y-2 ${
+                tier.popular
+                  ? "border-accent bg-gradient-hero text-primary-foreground shadow-elegant"
+                  : "border-border bg-card shadow-card hover:border-accent/40 hover:shadow-elegant"
+              }`}
+            >
+              {tier.popular && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-accent px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
+                  Most Popular
+                </span>
+              )}
+              <div className={`text-xs font-semibold uppercase tracking-widest ${tier.popular ? "text-accent" : "text-accent"}`}>{tier.name}</div>
+              <div className={`mt-3 text-sm ${tier.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{tier.tagline}</div>
+              <div className="mt-6 flex items-baseline gap-1">
+                <span className={`text-sm ${tier.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>PKR</span>
+                <span className={`text-5xl font-bold ${tier.popular ? "text-primary-foreground" : "text-primary"}`}>{tier.price}</span>
+              </div>
+              <ul className="mt-8 flex-1 space-y-3">
+                {tier.features.map((f) => (
+                  <li key={f} className={`flex items-start gap-2 text-sm ${tier.popular ? "text-primary-foreground/90" : "text-foreground"}`}>
+                    <Check className={`mt-0.5 h-4 w-4 flex-none ${tier.popular ? "text-accent" : "text-accent"}`} />
+                    {f}
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                  <Button size="lg" className="bg-gradient-accent text-accent-foreground shadow-accent">
-                    <MessageCircle className="mr-2 h-4 w-4" /> Claim This Offer
-                  </Button>
-                </a>
-                <a href={PHONE}>
-                  <Button size="lg" variant="outline" className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
-                    <Phone className="mr-2 h-4 w-4" /> 0310 2523274
-                  </Button>
-                </a>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur">
-              <div className="text-xs uppercase tracking-widest text-accent">Also Available</div>
-              <div className="mt-4 space-y-4">
-                {[
-                  { name: "Branding Package", price: "From PKR 12,000", desc: "Logo, color system, brand guidelines" },
-                  { name: "Social Media Management", price: "From PKR 15,000/mo", desc: "Content + posting + community" },
-                  { name: "Facebook & Instagram Ads", price: "Custom", desc: "Campaign setup + optimization" },
-                ].map((p) => (
-                  <div key={p.name} className="flex items-start justify-between gap-4 border-b border-primary-foreground/10 pb-4 last:border-0 last:pb-0">
-                    <div>
-                      <div className="font-semibold text-primary-foreground">{p.name}</div>
-                      <div className="text-xs text-primary-foreground/60">{p.desc}</div>
-                    </div>
-                    <div className="whitespace-nowrap text-sm font-medium text-accent">{p.price}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-8">
+                <Button
+                  size="lg"
+                  className={`w-full ${tier.popular ? "bg-gradient-accent text-accent-foreground shadow-accent" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" /> Get Started
+                </Button>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mt-8 rounded-2xl border border-border bg-card p-6 text-center text-sm text-muted-foreground shadow-card">
+          Custom project ya monthly retainer chahiye? <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold text-accent hover:underline">WhatsApp karein</a> — hum customized quote de dete hain.
         </Reveal>
       </section>
 
