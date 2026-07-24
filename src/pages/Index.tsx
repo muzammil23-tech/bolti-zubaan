@@ -37,13 +37,9 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
+import { PortfolioGallery } from "@/components/PortfolioGallery";
+import { ClientLogos } from "@/components/ClientLogos";
 import heroVisual from "@/assets/hero-visual.jpg";
-import p1 from "@/assets/portfolio-1.jpg";
-import p2 from "@/assets/portfolio-2.jpg";
-import p3 from "@/assets/portfolio-3.jpg";
-import p4 from "@/assets/portfolio-4.jpg";
-import p5 from "@/assets/portfolio-5.jpg";
-import p6 from "@/assets/portfolio-6.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
 const PHONE = "tel:+923102523274";
@@ -69,15 +65,6 @@ const comparison = {
   them: ["Missed deadlines", "Poor communication", "Excuses every time", "Low quality work", "No responsibility"],
   us: ["On-time delivery, every time", "Daily updates & transparency", "Premium, on-brand designs", "Dedicated project team", "Real accountability"],
 };
-
-const portfolio = [
-  { img: p1, title: "Zaytoon Store", category: "E-Commerce", tag: "Web Development" },
-  { img: p2, title: "Karahi House", category: "Restaurant", tag: "Web Development" },
-  { img: p3, title: "Nova Identity", category: "Branding", tag: "Logo & Identity" },
-  { img: p4, title: "Bloom Feed", category: "Social Campaign", tag: "Social Media" },
-  { img: p5, title: "PulseMetrics", category: "SaaS Dashboard", tag: "Web App" },
-  { img: p6, title: "IronFit Gym", category: "Landing Page", tag: "Web Development" },
-];
 
 const testimonials = [
   {
