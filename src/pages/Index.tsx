@@ -323,18 +323,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="border-y border-border bg-primary py-4 overflow-hidden">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[...Array(2)].map((_, k) => (
-            <div key={k} className="flex shrink-0 items-center gap-12 px-6 text-primary-foreground/60">
-              {["✦ Web Development", "✦ Branding", "✦ Social Media", "✦ SEO", "✦ Paid Ads", "✦ Logo Design", "✦ Content Strategy", "✦ Lead Generation"].map((t) => (
-                <span key={`${k}-${t}`} className="text-sm font-medium uppercase tracking-widest">{t}</span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* CLIENT LOGOS MARQUEE */}
+      <ClientLogos />
 
       {/* SERVICES */}
       <section id="services" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -372,34 +362,7 @@ const Index = () => {
               Selected work from clients across Pakistan and beyond — websites, branding, and campaigns that ship.
             </p>
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {portfolio.map((p, i) => (
-              <Reveal key={p.title} delay={i * 90} animation="scale-in" className="group relative overflow-hidden rounded-2xl bg-card shadow-card">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={p.img}
-                    alt={`${p.title} — ${p.category}`}
-                    width={800}
-                    height={600}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-95" />
-                <div className="absolute inset-x-0 bottom-0 translate-y-4 p-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <span className="inline-block rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-accent-foreground">
-                    {p.tag}
-                  </span>
-                  <h3 className="mt-3 text-2xl font-bold text-primary-foreground">{p.title}</h3>
-                  <p className="mt-1 text-sm text-primary-foreground/70">{p.category}</p>
-                </div>
-                <div className="p-5 group-hover:opacity-0 transition-opacity duration-300">
-                  <div className="text-xs uppercase tracking-widest text-accent">{p.tag}</div>
-                  <div className="mt-1 font-semibold text-primary">{p.title}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <PortfolioGallery />
         </div>
       </section>
 
@@ -529,12 +492,15 @@ const Index = () => {
             <Reveal
               key={tier.name}
               delay={i * 120}
-              className={`relative flex flex-col rounded-3xl border p-8 transition-smooth hover:-translate-y-2 ${
+              className={`relative flex flex-col rounded-3xl border p-8 transition-all duration-500 hover:-translate-y-2 ${
                 tier.popular
-                  ? "border-accent bg-gradient-hero text-primary-foreground shadow-elegant"
+                  ? "border-accent bg-gradient-hero text-primary-foreground shadow-elegant scale-100 md:scale-[1.04] ring-2 ring-accent/50 ring-offset-4 ring-offset-background"
                   : "border-border bg-card shadow-card hover:border-accent/40 hover:shadow-elegant"
               }`}
             >
+              {tier.popular && (
+                <div className="pointer-events-none absolute -inset-1 -z-10 rounded-[28px] bg-gradient-accent opacity-40 blur-2xl animate-glow-pulse" />
+              )}
               {tier.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-accent px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
                   Most Popular
@@ -713,10 +679,14 @@ const Index = () => {
         target="_blank"
         rel="noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-accent shadow-accent transition-smooth hover:scale-110 animate-float"
+        className="group fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-accent shadow-accent transition-all duration-300 hover:scale-110 animate-float"
       >
         <MessageCircle className="h-6 w-6 text-accent-foreground" />
-        <span className="absolute inset-0 rounded-full bg-accent/40 animate-ping" />
+        <span className="pointer-events-none absolute inset-0 rounded-full bg-accent/40 animate-ping" />
+        <span className="pointer-events-none absolute -inset-2 rounded-full bg-accent/30 opacity-60 blur-lg animate-glow-pulse" />
+        <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground opacity-0 shadow-elegant transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-1">
+          Chat on WhatsApp
+        </span>
       </a>
     </div>
   );
