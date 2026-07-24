@@ -39,6 +39,9 @@ import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { ClientLogos } from "@/components/ClientLogos";
+import { HeroBackground } from "@/components/HeroBackground";
+import { StatCounter } from "@/components/StatCounter";
+import { AIChatWidget } from "@/components/AIChatWidget";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
@@ -274,6 +277,7 @@ const Index = () => {
         <div className="absolute inset-0 opacity-70" style={{ background: "var(--gradient-glow)" }} />
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-glow-pulse" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
+        <HeroBackground />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
           <div className="flex flex-col justify-center text-primary-foreground animate-fade-in-up">
             <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
@@ -298,16 +302,9 @@ const Index = () => {
               </a>
             </div>
             <div className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-primary-foreground/15 pt-6">
-              {[
-                { k: "50+", v: "Projects" },
-                { k: "100%", v: "On-Time" },
-                { k: "5★", v: "Rated" },
-              ].map((s, i) => (
-                <div key={s.v} className="animate-fade-in-up" style={{ animationDelay: `${400 + i * 120}ms` }}>
-                  <div className="text-2xl font-bold text-accent">{s.k}</div>
-                  <div className="text-xs uppercase tracking-wider text-primary-foreground/60">{s.v}</div>
-                </div>
-              ))}
+              <StatCounter target={50} suffix="+" label="Projects" delay={400} />
+              <StatCounter target={100} suffix="%" label="On-Time" delay={520} />
+              <StatCounter target={5} suffix="★" label="Rated" delay={640} />
             </div>
           </div>
           <div className="relative animate-fade-in" style={{ animationDelay: "200ms" }}>
@@ -447,7 +444,9 @@ const Index = () => {
               <CarouselContent className="-ml-4">
                 {testimonials.map((t) => (
                   <CarouselItem key={t.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                    <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-card transition-smooth hover:-translate-y-1 hover:border-accent/40 hover:shadow-elegant">
+                    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-accent/20 bg-card/70 p-7 shadow-card backdrop-blur-xl transition-smooth hover:-translate-y-1 hover:border-accent/60 hover:shadow-elegant">
+                      <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-accent/10 blur-3xl transition-opacity duration-500 group-hover:bg-accent/20" />
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/5" />
                       <Quote className="h-8 w-8 text-accent/40 transition-smooth group-hover:text-accent" />
                       <p className="mt-4 flex-1 text-base leading-relaxed text-foreground">"{t.text}"</p>
                       <div className="mt-5 flex items-center gap-0.5">
@@ -628,8 +627,9 @@ const Index = () => {
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-          <div className="grid gap-10 md:grid-cols-3">
+        <div className="relative mx-auto max-w-7xl px-5 py-14 lg:px-8">
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[80%] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+          <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="flex items-center gap-2">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
@@ -646,13 +646,43 @@ const Index = () => {
               <p className="mt-3 text-sm text-primary-foreground/70">
                 Founded by <span className="font-semibold text-accent">Muzammil Samiullah</span> — building brands from Karachi to the world.
               </p>
+              <div className="mt-5 flex items-center gap-2">
+                <a href="https://www.facebook.com/share/18Mzn6mZgx/" target="_blank" rel="noreferrer" aria-label="Facebook" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
+                  <Facebook className="h-4 w-4" />
+                </a>
+                <a href="#" aria-label="Instagram" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a href="#" aria-label="LinkedIn" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              </div>
             </div>
             <div>
               <div className="text-xs font-semibold uppercase tracking-widest text-accent">Quick Links</div>
               <ul className="mt-4 space-y-2 text-sm">
                 {["Services", "Portfolio", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
                   <li key={l}>
-                    <a href={`#${l.toLowerCase()}`} className="text-primary-foreground/70 transition-smooth hover:text-accent">{l}</a>
+                    <a href={`#${l.toLowerCase()}`} className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
+                      <span className="h-1 w-1 rounded-full bg-accent/50" /> {l}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <Link to="/blog" className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
+                    <span className="h-1 w-1 rounded-full bg-accent/50" /> Blog
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Services</div>
+              <ul className="mt-4 space-y-2 text-sm">
+                {["Web Development", "Branding & Logo", "Social Media", "Paid Ads", "SEO", "Printing & Graphics"].map((l) => (
+                  <li key={l}>
+                    <a href="#services" className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
+                      <span className="h-1 w-1 rounded-full bg-accent/50" /> {l}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -660,13 +690,18 @@ const Index = () => {
             <div>
               <div className="text-xs font-semibold uppercase tracking-widest text-accent">Get in Touch</div>
               <ul className="mt-4 space-y-2 text-sm text-primary-foreground/70">
-                <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-accent" /> 0310 2523274</li>
-                <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-accent" /> muzammilsamiullah@gmail.com</li>
+                <li><a href={PHONE} className="flex items-center gap-2 transition-smooth hover:text-accent"><Phone className="h-4 w-4 text-accent" /> 0310 2523274</a></li>
+                <li><a href={EMAIL} className="flex items-center gap-2 break-all transition-smooth hover:text-accent"><Mail className="h-4 w-4 flex-none text-accent" /> muzammilsamiullah@gmail.com</a></li>
                 <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" /> Karachi, Pakistan</li>
+                <li className="pt-2">
+                  <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-4 py-2 text-xs font-semibold text-accent-foreground shadow-accent transition hover:-translate-y-0.5 hover:opacity-90">
+                    <MessageCircle className="h-3.5 w-3.5" /> WhatsApp Us
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-primary-foreground/10 pt-6 text-sm text-primary-foreground/50 md:flex-row md:items-center">
+          <div className="relative mt-10 flex flex-col items-start justify-between gap-3 border-t border-primary-foreground/10 pt-6 text-sm text-primary-foreground/50 md:flex-row md:items-center">
             <div>© {new Date().getFullYear()} Click &amp; Buy Digital, Co. All rights reserved.</div>
             <div>Crafted with <span className="text-accent">♥</span> by Muzammil Samiullah</div>
           </div>
@@ -688,6 +723,9 @@ const Index = () => {
           Chat on WhatsApp
         </span>
       </a>
+
+      {/* Floating AI Chat Assistant */}
+      <AIChatWidget />
     </div>
   );
 };
