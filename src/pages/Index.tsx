@@ -44,6 +44,7 @@ import { StatCounter } from "@/components/StatCounter";
 import { AIChatWidget } from "@/components/AIChatWidget";
 import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { CodeSnippetCard } from "@/components/CodeSnippetCard";
+import { SectionDivider } from "@/components/SectionDivider";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
@@ -210,7 +211,7 @@ const LeadForm = () => {
         <Textarea id="message" placeholder="Apne project ke baare me batayein…" className="mt-1.5 min-h-[110px]" {...field("message")} maxLength={1000} />
         {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
       </div>
-      <Button type="submit" size="lg" disabled={loading} className="w-full bg-gradient-accent text-accent-foreground shadow-accent hover:opacity-90">
+      <Button type="submit" size="lg" disabled={loading} className="btn-lift w-full bg-gradient-accent text-accent-foreground shadow-accent">
         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
         {loading ? "Bhej rahe hain…" : "Free Consultation Book Karein"}
       </Button>
@@ -241,32 +242,34 @@ const Index = () => {
           </a>
           <nav className="hidden items-center gap-8 md:flex">
             {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">
+              <a key={l} href={`#${l.toLowerCase()}`} className="nav-underline text-sm font-medium text-muted-foreground transition-smooth hover:text-accent">
                 {l}
               </a>
             ))}
-            <Link to="/blog" className="relative text-sm font-medium text-muted-foreground transition-smooth hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all hover:after:w-full">Blog</Link>
+            <Link to="/blog" className="nav-underline text-sm font-medium text-muted-foreground transition-smooth hover:text-accent">Blog</Link>
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
-            <Button className="bg-gradient-accent text-accent-foreground hover:opacity-90 shadow-accent">
+            <Button className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
               WhatsApp Us <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </a>
-          <button className="md:hidden text-primary" onClick={() => setMenuOpen(!menuOpen)} aria-label="menu">
-            {menuOpen ? <X /> : <Sparkles />}
+          <button className="md:hidden text-primary transition-transform duration-300 hover:scale-110 active:scale-95" onClick={() => setMenuOpen(!menuOpen)} aria-label="menu">
+            <span className="inline-block transition-transform duration-300" style={{ transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+              {menuOpen ? <X /> : <Sparkles />}
+            </span>
           </button>
         </div>
         {menuOpen && (
-          <div className="animate-fade-in border-t border-border md:hidden">
+          <div className="mobile-menu-panel border-t border-border md:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
-              {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
+              {["Services", "Portfolio", "Pricing", "Testimonials", "FAQ", "Contact"].map((l, i) => (
+                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} style={{ animationDelay: `${80 + i * 55}ms` }} className="mobile-menu-item rounded-md px-3 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:translate-x-1 hover:bg-secondary hover:text-accent">
                   {l}
                 </a>
               ))}
-              <Link to="/blog" onClick={() => setMenuOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">Blog</Link>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                <Button className="mt-2 w-full bg-gradient-accent text-accent-foreground">WhatsApp Us</Button>
+              <Link to="/blog" onClick={() => setMenuOpen(false)} style={{ animationDelay: `${80 + 6 * 55}ms` }} className="mobile-menu-item rounded-md px-3 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:translate-x-1 hover:bg-secondary hover:text-accent">Blog</Link>
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" style={{ animationDelay: `${80 + 7 * 55}ms` }} className="mobile-menu-item">
+                <Button className="btn-lift mt-2 w-full bg-gradient-accent text-accent-foreground shadow-accent">WhatsApp Us</Button>
               </a>
             </div>
           </div>
@@ -281,35 +284,35 @@ const Index = () => {
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
         <HeroBackground />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
-          <div className="flex flex-col justify-center text-primary-foreground animate-fade-in-up">
-            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
+          <div className="flex flex-col justify-center text-primary-foreground">
+            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent animate-fade-in-up" style={{ animationDelay: "80ms" }}>
               <Sparkles className="h-3.5 w-3.5" /> Digital Solutions • Creative Results
             </span>
-            <h1 className="text-balance text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl">
+            <h1 className="text-balance text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl animate-fade-in-up" style={{ animationDelay: "200ms" }}>
               We Design, Develop &amp; <span className="text-gradient-accent">Grow</span> Businesses.
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-primary-foreground/80">
+            <p className="mt-6 max-w-xl text-lg text-primary-foreground/80 animate-fade-in-up" style={{ animationDelay: "340ms" }}>
               Click &amp; Buy Digital is a Karachi-based creative studio building modern websites, powerful branding, and social campaigns that turn visitors into paying customers.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "460ms" }}>
               <a href="#pricing">
-                <Button size="lg" className="bg-gradient-accent text-accent-foreground shadow-accent hover:opacity-90">
+                <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
                   Start From PKR 9,999 <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
               <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
+                <Button size="lg" variant="outline" className="btn-lift border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
                   <MessageCircle className="mr-2 h-4 w-4" /> Chat on WhatsApp
                 </Button>
               </a>
             </div>
-            <div className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-primary-foreground/15 pt-6">
+            <div className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-primary-foreground/15 pt-6 animate-fade-in-up" style={{ animationDelay: "600ms" }}>
               <StatCounter target={50} suffix="+" label="Projects" delay={400} />
               <StatCounter target={100} suffix="%" label="On-Time" delay={520} />
               <StatCounter target={5} suffix="★" label="Rated" delay={640} />
             </div>
           </div>
-          <div className="relative animate-fade-in" style={{ animationDelay: "200ms" }}>
+          <div className="relative animate-scale-in" style={{ animationDelay: "300ms" }}>
             <div className="absolute -inset-4 rounded-3xl bg-accent/20 blur-3xl" />
             <img
               src={heroVisual}
@@ -324,6 +327,7 @@ const Index = () => {
 
       {/* CLIENT LOGOS MARQUEE */}
       <ClientLogos />
+      <SectionDivider />
 
       {/* SERVICES */}
       <section id="services" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -400,6 +404,7 @@ const Index = () => {
           <PortfolioGallery />
         </div>
       </section>
+      <SectionDivider />
 
       {/* WHY US */}
       <section id="why-us" className="py-24">
@@ -562,7 +567,7 @@ const Index = () => {
               <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-8">
                 <Button
                   size="lg"
-                  className={`w-full ${tier.popular ? "bg-gradient-accent text-accent-foreground shadow-accent" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
+                  className={`btn-lift w-full ${tier.popular ? "bg-gradient-accent text-accent-foreground shadow-accent" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
                 >
                   <MessageCircle className="mr-2 h-4 w-4" /> Get Started
                 </Button>

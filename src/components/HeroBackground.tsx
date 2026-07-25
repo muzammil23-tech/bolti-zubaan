@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react";
+
 export const HeroBackground = () => {
+  const [y, setY] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        setY(window.scrollY);
+        raf = 0;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const slow = y * 0.15;
+  const mid = y * 0.28;
+  const fast = y * 0.4;
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       {/* Dot grid */}
@@ -15,9 +38,10 @@ export const HeroBackground = () => {
         }}
       />
 
-      {/* Workflow / node network SVG */}
+      {/* Workflow / node network SVG — subtle parallax */}
       <svg
-        className="absolute inset-0 h-full w-full opacity-60"
+        className="absolute inset-0 h-full w-full opacity-60 will-change-transform"
+        style={{ transform: `translate3d(0, ${slow}px, 0)` }}
         viewBox="0 0 1200 700"
         preserveAspectRatio="xMidYMid slice"
         aria-hidden="true"
@@ -77,15 +101,18 @@ export const HeroBackground = () => {
         ))}
       </svg>
 
-      {/* Drifting orbs */}
-      <div className="absolute left-[10%] top-[15%] h-64 w-64 rounded-full bg-accent/25 blur-3xl animate-float" />
+      {/* Drifting orbs — layered parallax */}
       <div
-        className="absolute right-[8%] top-[55%] h-72 w-72 rounded-full bg-primary-glow/40 blur-3xl animate-float"
-        style={{ animationDelay: "1.2s", animationDuration: "8s" }}
+        className="absolute left-[10%] top-[15%] h-64 w-64 rounded-full bg-accent/25 blur-3xl animate-float will-change-transform"
+        style={{ transform: `translate3d(0, ${mid}px, 0)` }}
       />
       <div
-        className="absolute left-[40%] bottom-[8%] h-56 w-56 rounded-full bg-accent/15 blur-3xl animate-glow-pulse"
-        style={{ animationDelay: "0.6s" }}
+        className="absolute right-[8%] top-[55%] h-72 w-72 rounded-full bg-primary-glow/40 blur-3xl animate-float will-change-transform"
+        style={{ animationDelay: "1.2s", animationDuration: "8s", transform: `translate3d(0, ${fast}px, 0)` }}
+      />
+      <div
+        className="absolute left-[40%] bottom-[8%] h-56 w-56 rounded-full bg-accent/15 blur-3xl animate-glow-pulse will-change-transform"
+        style={{ animationDelay: "0.6s", transform: `translate3d(0, ${-mid}px, 0)` }}
       />
       {/* Subtle noise/scanline effect via gradient */}
       <div
