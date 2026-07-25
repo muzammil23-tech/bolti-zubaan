@@ -211,7 +211,7 @@ const LeadForm = () => {
         <Textarea id="message" placeholder="Apne project ke baare me batayein…" className="mt-1.5 min-h-[110px]" {...field("message")} maxLength={1000} />
         {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
       </div>
-      <Button type="submit" size="lg" disabled={loading} className="w-full bg-gradient-accent text-accent-foreground shadow-accent hover:opacity-90">
+      <Button type="submit" size="lg" disabled={loading} className="btn-lift w-full bg-gradient-accent text-accent-foreground shadow-accent">
         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
         {loading ? "Bhej rahe hain…" : "Free Consultation Book Karein"}
       </Button>
@@ -404,6 +404,7 @@ const Index = () => {
           <PortfolioGallery />
         </div>
       </section>
+      <SectionDivider />
 
       {/* WHY US */}
       <section id="why-us" className="py-24">
@@ -566,7 +567,7 @@ const Index = () => {
               <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-8">
                 <Button
                   size="lg"
-                  className={`w-full ${tier.popular ? "bg-gradient-accent text-accent-foreground shadow-accent" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
+                  className={`btn-lift w-full ${tier.popular ? "bg-gradient-accent text-accent-foreground shadow-accent" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
                 >
                   <MessageCircle className="mr-2 h-4 w-4" /> Get Started
                 </Button>
