@@ -13,7 +13,8 @@ export function useCountUp(target: number, duration = 1600) {
     let raf = 0;
     const tick = (now: number) => {
       const p = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
+      // easeOutExpo — smoother, more premium deceleration
+      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
       setValue(Math.round(target * eased));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
