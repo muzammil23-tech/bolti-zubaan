@@ -116,4 +116,57 @@ All colors MUST be HSL.
   .shadow-card { box-shadow: var(--shadow-card); }
   .transition-smooth { transition: var(--transition-smooth); }
   .text-balance { text-wrap: balance; }
+
+  /* n8n-inspired texture patterns */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--accent) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent) / 0.06) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .bg-dots-pattern {
+    background-image: radial-gradient(hsl(var(--accent) / 0.18) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Gradient headline text */
+  .text-gradient-accent {
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-glow)) 45%, hsl(30 95% 85%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    background: hsl(var(--card) / 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid hsl(var(--accent) / 0.22);
+  }
+
+  /* Subtle 3D tilt on hover */
+  .tilt-hover {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .tilt-hover:hover {
+    transform: perspective(1200px) rotateX(3deg) rotateY(-4deg) translateY(-6px);
+  }
+}
+
+/* Workflow / node animations */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+@keyframes travel-x {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(var(--travel, 100%)); opacity: 0; }
+}
+@keyframes node-ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
 }

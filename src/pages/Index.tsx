@@ -42,6 +42,8 @@ import { ClientLogos } from "@/components/ClientLogos";
 import { HeroBackground } from "@/components/HeroBackground";
 import { StatCounter } from "@/components/StatCounter";
 import { AIChatWidget } from "@/components/AIChatWidget";
+import { WorkflowDiagram } from "@/components/WorkflowDiagram";
+import { CodeSnippetCard } from "@/components/CodeSnippetCard";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
@@ -284,7 +286,7 @@ const Index = () => {
               <Sparkles className="h-3.5 w-3.5" /> Digital Solutions • Creative Results
             </span>
             <h1 className="text-balance text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl">
-              We Design, Develop &amp; <span className="text-accent">Grow</span> Businesses.
+              We Design, Develop &amp; <span className="text-gradient-accent">Grow</span> Businesses.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-primary-foreground/80">
               Click &amp; Buy Digital is a Karachi-based creative studio building modern websites, powerful branding, and social campaigns that turn visitors into paying customers.
@@ -324,36 +326,72 @@ const Index = () => {
       <ClientLogos />
 
       {/* SERVICES */}
-      <section id="services" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <Reveal className="mb-16 max-w-2xl">
+      <section id="services" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+        <Reveal className="relative mb-16 max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Services</span>
           <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
-            Everything your brand needs, <span className="text-accent">under one roof.</span>
+            Everything your brand needs, <span className="text-gradient-accent">under one roof.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             We don't just provide services — we build your brand's success story. From first pixel to final campaign, we handle it all.
           </p>
         </Reveal>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Row connector lines (decorative, desktop only) */}
+          <svg className="pointer-events-none absolute inset-x-0 top-6 hidden h-6 w-full lg:block" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M 200 12 Q 400 -8 600 12 T 1000 12" fill="none" stroke="hsl(18 90% 55% / 0.35)" strokeWidth="1.5" strokeDasharray="6 8" style={{ animation: "dash-flow 3s linear infinite" }} />
+          </svg>
           {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 80} className="group relative rounded-2xl border border-border bg-card p-7 shadow-card transition-smooth hover:-translate-y-2 hover:border-accent/40 hover:shadow-elegant">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-accent shadow-accent transition-smooth group-hover:rotate-6 group-hover:scale-110">
-                <s.icon className="h-6 w-6 text-accent-foreground" />
+            <Reveal key={s.title} delay={i * 80}>
+              <div className="group tilt-hover relative flex h-full flex-col rounded-2xl glass-card p-7 pt-12 shadow-card hover:border-accent/60 hover:shadow-elegant">
+                {/* Node dot at top */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+                  <span className="absolute inset-0 -m-1.5 rounded-full bg-accent/40 blur-md animate-glow-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-accent shadow-accent ring-4 ring-background transition-transform duration-500 group-hover:scale-110">
+                    <s.icon className="h-5 w-5 text-accent-foreground" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-primary">{s.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                {s.title === "Web Development" && (
+                  <div className="mt-5">
+                    <CodeSnippetCard />
+                  </div>
+                )}
               </div>
-              <h3 className="text-xl font-semibold text-primary">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
             </Reveal>
           ))}
         </div>
       </section>
 
+      {/* HOW IT WORKS — live workflow */}
+      <section id="how-it-works" className="relative overflow-hidden border-y border-border bg-secondary/30 py-24">
+        <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal className="mb-16 text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">How It Works</span>
+            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+              A live workflow — <span className="text-gradient-accent">click to launch.</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+              Simple three-step pipeline. Har node pe pulse dekhein — real-time delivery.
+            </p>
+          </Reveal>
+          <Reveal>
+            <WorkflowDiagram />
+          </Reveal>
+        </div>
+      </section>
+
       {/* PORTFOLIO / GALLERY */}
-      <section id="portfolio" className="bg-secondary/40 py-24">
+      <section id="portfolio" className="relative bg-secondary/40 py-24">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" />
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
-              Recent projects, <span className="text-accent">real results.</span>
+              Recent projects, <span className="text-gradient-accent">real results.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Selected work from clients across Pakistan and beyond — websites, branding, and campaigns that ship.
@@ -369,7 +407,7 @@ const Index = () => {
           <Reveal className="mb-16 max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Why Choose Us</span>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
-              Work with professionals. <span className="text-accent">Not excuses.</span>
+              Work with professionals. <span className="text-gradient-accent">Not excuses.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Hiring cheap isn't always saving money. Here's what makes working with us different.
@@ -422,12 +460,13 @@ const Index = () => {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testimonials" className="bg-secondary/40 py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <section id="testimonials" className="relative bg-secondary/40 py-24">
+        <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30" />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client Love</span>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
-              What our clients <span className="text-accent">actually say.</span>
+              What our clients <span className="text-gradient-accent">actually say.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Real feedback from businesses we've grown. No paid reviews, no fake stars.
@@ -444,7 +483,7 @@ const Index = () => {
               <CarouselContent className="-ml-4">
                 {testimonials.map((t) => (
                   <CarouselItem key={t.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-accent/20 bg-card/70 p-7 shadow-card backdrop-blur-xl transition-smooth hover:-translate-y-1 hover:border-accent/60 hover:shadow-elegant">
+                    <div className="group tilt-hover relative flex h-full flex-col overflow-hidden rounded-2xl glass-card p-7 shadow-card hover:border-accent/60 hover:shadow-elegant">
                       <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-accent/10 blur-3xl transition-opacity duration-500 group-hover:bg-accent/20" />
                       <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/5" />
                       <Quote className="h-8 w-8 text-accent/40 transition-smooth group-hover:text-accent" />
@@ -475,23 +514,24 @@ const Index = () => {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <Reveal className="mb-16 max-w-2xl">
+      <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+        <Reveal className="relative mb-16 max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Pricing</span>
           <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
-            Transparent packages, <span className="text-accent">no hidden costs.</span>
+            Transparent packages, <span className="text-gradient-accent">no hidden costs.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Har budget ke liye ek option. Aap ka business grow karega — hamara pricing ustable rahega.
           </p>
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="relative grid gap-6 lg:grid-cols-3">
           {pricingTiers.map((tier, i) => (
             <Reveal
               key={tier.name}
               delay={i * 120}
-              className={`relative flex flex-col rounded-3xl border p-8 transition-all duration-500 hover:-translate-y-2 ${
+              className={`tilt-hover relative flex flex-col rounded-3xl border p-8 transition-all duration-500 ${
                 tier.popular
                   ? "border-accent bg-gradient-hero text-primary-foreground shadow-elegant scale-100 md:scale-[1.04] ring-2 ring-accent/50 ring-offset-4 ring-offset-background"
                   : "border-border bg-card shadow-card hover:border-accent/40 hover:shadow-elegant"
