@@ -567,8 +567,15 @@ const Index = () => {
               <CarouselNext className="hidden md:flex -right-4 border-accent/40 text-accent hover:bg-accent hover:text-accent-foreground" />
             </Carousel>
           </Reveal>
+          {/* Video-style testimonial */}
+          <Reveal className="mt-10" animation="scale-in">
+            <VideoTestimonialCard />
+          </Reveal>
         </div>
       </section>
+
+      {/* PROCESS IN NUMBERS */}
+      <ProcessNumbers />
 
       {/* PRICING */}
       <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
