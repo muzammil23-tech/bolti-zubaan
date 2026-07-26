@@ -45,6 +45,15 @@ import { AIChatWidget } from "@/components/AIChatWidget";
 import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { CodeSnippetCard } from "@/components/CodeSnippetCard";
 import { SectionDivider } from "@/components/SectionDivider";
+import { TiltCard } from "@/components/TiltCard";
+import { MagneticButton } from "@/components/MagneticButton";
+import { StickyMiniNav } from "@/components/StickyMiniNav";
+import { ProcessNumbers } from "@/components/ProcessNumbers";
+import { RecentWorkTicker } from "@/components/RecentWorkTicker";
+import { ServiceTabs } from "@/components/ServiceTabs";
+import { VideoTestimonialCard } from "@/components/VideoTestimonialCard";
+import { CTABanner } from "@/components/CTABanner";
+import { PremiumFooter } from "@/components/PremiumFooter";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
