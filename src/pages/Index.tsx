@@ -237,6 +237,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <StickyMiniNav />
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
@@ -287,7 +288,8 @@ const Index = () => {
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-animated-gradient" />
+        <div className="grain-overlay pointer-events-none absolute inset-0" />
         <div className="absolute inset-0 opacity-70" style={{ background: "var(--gradient-glow)" }} />
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-glow-pulse" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
@@ -304,16 +306,20 @@ const Index = () => {
               Click &amp; Buy Digital is a Karachi-based creative studio building modern websites, powerful branding, and social campaigns that turn visitors into paying customers.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "460ms" }}>
-              <a href="#pricing">
-                <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
-                  Start From PKR 9,999 <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                <Button size="lg" variant="outline" className="btn-lift border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
-                  <MessageCircle className="mr-2 h-4 w-4" /> Chat on WhatsApp
-                </Button>
-              </a>
+              <MagneticButton>
+                <a href="#pricing">
+                  <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
+                    Start From PKR 9,999 <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </MagneticButton>
+              <MagneticButton>
+                <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                  <Button size="lg" variant="outline" className="btn-lift border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
+                    <MessageCircle className="mr-2 h-4 w-4" /> Chat on WhatsApp
+                  </Button>
+                </a>
+              </MagneticButton>
             </div>
             <div className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-primary-foreground/15 pt-6 animate-fade-in-up" style={{ animationDelay: "600ms" }}>
               <StatCounter target={50} suffix="+" label="Projects" delay={400} />
@@ -321,21 +327,51 @@ const Index = () => {
               <StatCounter target={5} suffix="★" label="Rated" delay={640} />
             </div>
           </div>
-          <div className="relative animate-scale-in" style={{ animationDelay: "300ms" }}>
+          <div className="relative animate-scale-in" style={{ animationDelay: "300ms", perspective: "1400px" }}>
             <div className="absolute -inset-4 rounded-3xl bg-accent/20 blur-3xl" />
-            <img
-              src={heroVisual}
-              alt="Digital agency dashboard visualization"
-              width={1200}
-              height={1008}
-              className="relative rounded-3xl shadow-elegant animate-float"
-            />
+            {/* Orbiting decorative ring around hero visual */}
+            <div className="pointer-events-none absolute inset-0 orbit-ring-slow">
+              <div className="absolute -top-3 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-accent shadow-accent" />
+              <div className="absolute top-1/2 -right-3 h-3 w-3 -translate-y-1/2 rounded-full bg-accent-glow" />
+            </div>
+            <div className="pointer-events-none absolute -inset-6 orbit-counter">
+              <div className="absolute -bottom-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent-glow" />
+            </div>
+            <TiltCard max={8} className="relative rounded-3xl">
+              <img
+                src={heroVisual}
+                alt="Digital agency dashboard visualization"
+                width={1200}
+                height={1008}
+                className="relative rounded-3xl shadow-elegant animate-float"
+              />
+              {/* Floating rotating badge */}
+              <div className="pointer-events-none absolute -bottom-6 -left-6 hidden md:block">
+                <div className="relative flex h-24 w-24 items-center justify-center">
+                  <div className="absolute inset-0 orbit-ring">
+                    <svg viewBox="0 0 100 100" className="h-full w-full">
+                      <defs>
+                        <path id="badgeArc" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
+                      </defs>
+                      <text className="fill-primary-foreground text-[10px] font-semibold uppercase tracking-[0.25em]">
+                        <textPath href="#badgeArc">Premium • Fast • On-Time • </textPath>
+                      </text>
+                    </svg>
+                  </div>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
+                    <Sparkles className="h-5 w-5 text-accent-foreground" />
+                  </div>
+                </div>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>
 
       {/* CLIENT LOGOS MARQUEE */}
       <ClientLogos />
+      {/* RECENT WORK TICKER */}
+      <RecentWorkTicker />
       <SectionDivider />
 
       {/* SERVICES */}
