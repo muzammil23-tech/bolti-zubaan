@@ -433,6 +433,13 @@ const Index = () => {
         </div>
       </section>
 
+      {/* INTERACTIVE SERVICE TABS */}
+      <section className="relative py-24">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <ServiceTabs />
+      </section>
+      <SectionDivider />
+
       {/* PORTFOLIO / GALLERY */}
       <section id="portfolio" className="relative bg-secondary/40 py-24">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" />
