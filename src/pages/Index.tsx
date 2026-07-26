@@ -393,11 +393,11 @@ const Index = () => {
           </svg>
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <div className="group tilt-hover relative flex h-full flex-col rounded-2xl glass-card p-7 pt-12 shadow-card hover:border-accent/60 hover:shadow-elegant">
+              <TiltCard max={6} className="group relative flex h-full flex-col rounded-2xl glass-card p-7 pt-12 shadow-card hover:border-accent/60 hover:shadow-elegant">
                 {/* Node dot at top */}
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2">
                   <span className="absolute inset-0 -m-1.5 rounded-full bg-accent/40 blur-md animate-glow-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
-                  <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-accent shadow-accent ring-4 ring-background transition-transform duration-500 group-hover:scale-110">
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-accent shadow-accent ring-4 ring-background transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
                     <s.icon className="h-5 w-5 text-accent-foreground" />
                   </div>
                 </div>
@@ -408,7 +408,7 @@ const Index = () => {
                     <CodeSnippetCard />
                   </div>
                 )}
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
