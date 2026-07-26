@@ -730,87 +730,8 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-primary text-primary-foreground">
-        <div className="relative mx-auto max-w-7xl px-5 py-14 lg:px-8">
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[80%] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
-          <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
-                  <span className="font-bold text-accent-foreground">C</span>
-                </div>
-                <div className="leading-tight">
-                  <div className="font-semibold">Click &amp; Buy Digital, Co.</div>
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-accent">Digital Solutions</div>
-                </div>
-              </div>
-              <p className="mt-4 text-sm text-primary-foreground/60">
-                Your Vision. Our Creation. <span className="text-accent">One click, endless possibilities.</span>
-              </p>
-              <p className="mt-3 text-sm text-primary-foreground/70">
-                Founded by <span className="font-semibold text-accent">Muzammil Samiullah</span> — building brands from Karachi to the world.
-              </p>
-              <div className="mt-5 flex items-center gap-2">
-                <a href="https://www.facebook.com/share/18Mzn6mZgx/" target="_blank" rel="noreferrer" aria-label="Facebook" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                  <Facebook className="h-4 w-4" />
-                </a>
-                <a href="#" aria-label="Instagram" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a href="#" aria-label="LinkedIn" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                  <Linkedin className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Quick Links</div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {["Services", "Portfolio", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
-                  <li key={l}>
-                    <a href={`#${l.toLowerCase()}`} className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
-                      <span className="h-1 w-1 rounded-full bg-accent/50" /> {l}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <Link to="/blog" className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
-                    <span className="h-1 w-1 rounded-full bg-accent/50" /> Blog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Services</div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {["Web Development", "Branding & Logo", "Social Media", "Paid Ads", "SEO", "Printing & Graphics"].map((l) => (
-                  <li key={l}>
-                    <a href="#services" className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
-                      <span className="h-1 w-1 rounded-full bg-accent/50" /> {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Get in Touch</div>
-              <ul className="mt-4 space-y-2 text-sm text-primary-foreground/70">
-                <li><a href={PHONE} className="flex items-center gap-2 transition-smooth hover:text-accent"><Phone className="h-4 w-4 text-accent" /> 0310 2523274</a></li>
-                <li><a href={EMAIL} className="flex items-center gap-2 break-all transition-smooth hover:text-accent"><Mail className="h-4 w-4 flex-none text-accent" /> muzammilsamiullah@gmail.com</a></li>
-                <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" /> Karachi, Pakistan</li>
-                <li className="pt-2">
-                  <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-4 py-2 text-xs font-semibold text-accent-foreground shadow-accent transition hover:-translate-y-0.5 hover:opacity-90">
-                    <MessageCircle className="h-3.5 w-3.5" /> WhatsApp Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="relative mt-10 flex flex-col items-start justify-between gap-3 border-t border-primary-foreground/10 pt-6 text-sm text-primary-foreground/50 md:flex-row md:items-center">
-            <div>© {new Date().getFullYear()} Click &amp; Buy Digital, Co. All rights reserved.</div>
-            <div>Crafted with <span className="text-accent">♥</span> by Muzammil Samiullah</div>
-          </div>
-        </div>
-      </footer>
+      <CTABanner />
+      <PremiumFooter />
 
       {/* Floating WhatsApp */}
       <a
