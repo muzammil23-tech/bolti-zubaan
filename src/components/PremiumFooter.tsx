@@ -115,7 +115,7 @@ export const PremiumFooter = () => {
             <p className="mt-4 text-sm text-primary-foreground/60">
               Monthly insights on brands, marketing, and digital growth.
             </p>
-            <form onSubscribe={undefined as never} onSubmit={onSubscribe} className="mt-4 flex gap-2">
+            <form onSubmit={onSubscribe} className="mt-4 flex gap-2">
               <div className="relative flex-1">
                 <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-accent" />
                 <Input
