@@ -45,6 +45,15 @@ import { AIChatWidget } from "@/components/AIChatWidget";
 import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { CodeSnippetCard } from "@/components/CodeSnippetCard";
 import { SectionDivider } from "@/components/SectionDivider";
+import { TiltCard } from "@/components/TiltCard";
+import { MagneticButton } from "@/components/MagneticButton";
+import { StickyMiniNav } from "@/components/StickyMiniNav";
+import { ProcessNumbers } from "@/components/ProcessNumbers";
+import { RecentWorkTicker } from "@/components/RecentWorkTicker";
+import { ServiceTabs } from "@/components/ServiceTabs";
+import { VideoTestimonialCard } from "@/components/VideoTestimonialCard";
+import { CTABanner } from "@/components/CTABanner";
+import { PremiumFooter } from "@/components/PremiumFooter";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
@@ -228,6 +237,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <StickyMiniNav />
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
@@ -278,7 +288,8 @@ const Index = () => {
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-animated-gradient" />
+        <div className="grain-overlay pointer-events-none absolute inset-0" />
         <div className="absolute inset-0 opacity-70" style={{ background: "var(--gradient-glow)" }} />
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-glow-pulse" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
@@ -295,16 +306,20 @@ const Index = () => {
               Click &amp; Buy Digital is a Karachi-based creative studio building modern websites, powerful branding, and social campaigns that turn visitors into paying customers.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "460ms" }}>
-              <a href="#pricing">
-                <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
-                  Start From PKR 9,999 <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                <Button size="lg" variant="outline" className="btn-lift border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
-                  <MessageCircle className="mr-2 h-4 w-4" /> Chat on WhatsApp
-                </Button>
-              </a>
+              <MagneticButton>
+                <a href="#pricing">
+                  <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
+                    Start From PKR 9,999 <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </MagneticButton>
+              <MagneticButton>
+                <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                  <Button size="lg" variant="outline" className="btn-lift border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
+                    <MessageCircle className="mr-2 h-4 w-4" /> Chat on WhatsApp
+                  </Button>
+                </a>
+              </MagneticButton>
             </div>
             <div className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-primary-foreground/15 pt-6 animate-fade-in-up" style={{ animationDelay: "600ms" }}>
               <StatCounter target={50} suffix="+" label="Projects" delay={400} />
@@ -312,21 +327,51 @@ const Index = () => {
               <StatCounter target={5} suffix="★" label="Rated" delay={640} />
             </div>
           </div>
-          <div className="relative animate-scale-in" style={{ animationDelay: "300ms" }}>
+          <div className="relative animate-scale-in" style={{ animationDelay: "300ms", perspective: "1400px" }}>
             <div className="absolute -inset-4 rounded-3xl bg-accent/20 blur-3xl" />
-            <img
-              src={heroVisual}
-              alt="Digital agency dashboard visualization"
-              width={1200}
-              height={1008}
-              className="relative rounded-3xl shadow-elegant animate-float"
-            />
+            {/* Orbiting decorative ring around hero visual */}
+            <div className="pointer-events-none absolute inset-0 orbit-ring-slow">
+              <div className="absolute -top-3 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-accent shadow-accent" />
+              <div className="absolute top-1/2 -right-3 h-3 w-3 -translate-y-1/2 rounded-full bg-accent-glow" />
+            </div>
+            <div className="pointer-events-none absolute -inset-6 orbit-counter">
+              <div className="absolute -bottom-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent-glow" />
+            </div>
+            <TiltCard max={8} className="relative rounded-3xl">
+              <img
+                src={heroVisual}
+                alt="Digital agency dashboard visualization"
+                width={1200}
+                height={1008}
+                className="relative rounded-3xl shadow-elegant animate-float"
+              />
+              {/* Floating rotating badge */}
+              <div className="pointer-events-none absolute -bottom-6 -left-6 hidden md:block">
+                <div className="relative flex h-24 w-24 items-center justify-center">
+                  <div className="absolute inset-0 orbit-ring">
+                    <svg viewBox="0 0 100 100" className="h-full w-full">
+                      <defs>
+                        <path id="badgeArc" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
+                      </defs>
+                      <text className="fill-primary-foreground text-[10px] font-semibold uppercase tracking-[0.25em]">
+                        <textPath href="#badgeArc">Premium • Fast • On-Time • </textPath>
+                      </text>
+                    </svg>
+                  </div>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
+                    <Sparkles className="h-5 w-5 text-accent-foreground" />
+                  </div>
+                </div>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>
 
       {/* CLIENT LOGOS MARQUEE */}
       <ClientLogos />
+      {/* RECENT WORK TICKER */}
+      <RecentWorkTicker />
       <SectionDivider />
 
       {/* SERVICES */}
@@ -348,11 +393,11 @@ const Index = () => {
           </svg>
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <div className="group tilt-hover relative flex h-full flex-col rounded-2xl glass-card p-7 pt-12 shadow-card hover:border-accent/60 hover:shadow-elegant">
+              <TiltCard max={6} className="group relative flex h-full flex-col rounded-2xl glass-card p-7 pt-12 shadow-card hover:border-accent/60 hover:shadow-elegant">
                 {/* Node dot at top */}
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2">
                   <span className="absolute inset-0 -m-1.5 rounded-full bg-accent/40 blur-md animate-glow-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
-                  <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-accent shadow-accent ring-4 ring-background transition-transform duration-500 group-hover:scale-110">
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-accent shadow-accent ring-4 ring-background transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
                     <s.icon className="h-5 w-5 text-accent-foreground" />
                   </div>
                 </div>
@@ -363,7 +408,7 @@ const Index = () => {
                     <CodeSnippetCard />
                   </div>
                 )}
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
@@ -387,6 +432,13 @@ const Index = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* INTERACTIVE SERVICE TABS */}
+      <section className="relative py-24">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <ServiceTabs />
+      </section>
+      <SectionDivider />
 
       {/* PORTFOLIO / GALLERY */}
       <section id="portfolio" className="relative bg-secondary/40 py-24">
@@ -515,8 +567,15 @@ const Index = () => {
               <CarouselNext className="hidden md:flex -right-4 border-accent/40 text-accent hover:bg-accent hover:text-accent-foreground" />
             </Carousel>
           </Reveal>
+          {/* Video-style testimonial */}
+          <Reveal className="mt-10" animation="scale-in">
+            <VideoTestimonialCard />
+          </Reveal>
         </div>
       </section>
+
+      {/* PROCESS IN NUMBERS */}
+      <ProcessNumbers />
 
       {/* PRICING */}
       <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -671,87 +730,8 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-primary text-primary-foreground">
-        <div className="relative mx-auto max-w-7xl px-5 py-14 lg:px-8">
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[80%] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
-          <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
-                  <span className="font-bold text-accent-foreground">C</span>
-                </div>
-                <div className="leading-tight">
-                  <div className="font-semibold">Click &amp; Buy Digital, Co.</div>
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-accent">Digital Solutions</div>
-                </div>
-              </div>
-              <p className="mt-4 text-sm text-primary-foreground/60">
-                Your Vision. Our Creation. <span className="text-accent">One click, endless possibilities.</span>
-              </p>
-              <p className="mt-3 text-sm text-primary-foreground/70">
-                Founded by <span className="font-semibold text-accent">Muzammil Samiullah</span> — building brands from Karachi to the world.
-              </p>
-              <div className="mt-5 flex items-center gap-2">
-                <a href="https://www.facebook.com/share/18Mzn6mZgx/" target="_blank" rel="noreferrer" aria-label="Facebook" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                  <Facebook className="h-4 w-4" />
-                </a>
-                <a href="#" aria-label="Instagram" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a href="#" aria-label="LinkedIn" className="rounded-full border border-primary-foreground/20 p-2 text-primary-foreground/70 transition-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                  <Linkedin className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Quick Links</div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {["Services", "Portfolio", "Testimonials", "Pricing", "FAQ", "Contact"].map((l) => (
-                  <li key={l}>
-                    <a href={`#${l.toLowerCase()}`} className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
-                      <span className="h-1 w-1 rounded-full bg-accent/50" /> {l}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <Link to="/blog" className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
-                    <span className="h-1 w-1 rounded-full bg-accent/50" /> Blog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Services</div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {["Web Development", "Branding & Logo", "Social Media", "Paid Ads", "SEO", "Printing & Graphics"].map((l) => (
-                  <li key={l}>
-                    <a href="#services" className="inline-flex items-center gap-1 text-primary-foreground/70 transition-smooth hover:translate-x-1 hover:text-accent">
-                      <span className="h-1 w-1 rounded-full bg-accent/50" /> {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-accent">Get in Touch</div>
-              <ul className="mt-4 space-y-2 text-sm text-primary-foreground/70">
-                <li><a href={PHONE} className="flex items-center gap-2 transition-smooth hover:text-accent"><Phone className="h-4 w-4 text-accent" /> 0310 2523274</a></li>
-                <li><a href={EMAIL} className="flex items-center gap-2 break-all transition-smooth hover:text-accent"><Mail className="h-4 w-4 flex-none text-accent" /> muzammilsamiullah@gmail.com</a></li>
-                <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" /> Karachi, Pakistan</li>
-                <li className="pt-2">
-                  <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-4 py-2 text-xs font-semibold text-accent-foreground shadow-accent transition hover:-translate-y-0.5 hover:opacity-90">
-                    <MessageCircle className="h-3.5 w-3.5" /> WhatsApp Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="relative mt-10 flex flex-col items-start justify-between gap-3 border-t border-primary-foreground/10 pt-6 text-sm text-primary-foreground/50 md:flex-row md:items-center">
-            <div>© {new Date().getFullYear()} Click &amp; Buy Digital, Co. All rights reserved.</div>
-            <div>Crafted with <span className="text-accent">♥</span> by Muzammil Samiullah</div>
-          </div>
-        </div>
-      </footer>
+      <CTABanner />
+      <PremiumFooter />
 
       {/* Floating WhatsApp */}
       <a
