@@ -204,6 +204,21 @@ All colors MUST be HSL.
   50% { transform: translateY(-4px) rotate(-6deg); }
 }
 
+/* Floating 3D shape motion (subtle drift + rotate) */
+@keyframes float-3d {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+  50%      { transform: translate3d(0, -14px, 0) rotateX(8deg) rotateY(-10deg); }
+}
+@keyframes spin-slow {
+  from { transform: rotateX(60deg) rotate(0deg); }
+  to   { transform: rotateX(60deg) rotate(360deg); }
+}
+/* Character/word rise-in for TextReveal */
+@keyframes text-rise {
+  0%   { opacity: 0; transform: translateY(0.6em) rotateX(-40deg); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
 @layer utilities {
   /* Premium button lift on hover */
   .btn-lift {
@@ -357,4 +372,30 @@ All colors MUST be HSL.
     transition: opacity 0.4s ease;
   }
   .tilt3d:hover.tilt3d-glare::before { opacity: 1; }
+
+  .animate-float-3d { animation: float-3d 7s ease-in-out infinite; }
+  .animate-spin-slow { animation: spin-slow 14s linear infinite; }
+  .animate-text-rise { animation: text-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* 3D cube built from 6 gradient faces */
+  .shape-cube {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: float-3d 8s ease-in-out infinite;
+  }
+  .shape-cube::before,
+  .shape-cube::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg, hsl(22 95% 65%), hsl(18 90% 45%));
+    box-shadow: 0 20px 40px -8px hsl(18 90% 45% / 0.55);
+  }
+  .shape-cube::after {
+    background: linear-gradient(135deg, hsl(18 90% 45%), hsl(222 65% 15%));
+    transform: translateZ(-14px) translate(6px, 6px);
+    opacity: 0.85;
+    filter: blur(0.5px);
+  }
 }

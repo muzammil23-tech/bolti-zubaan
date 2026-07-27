@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Send, Sparkles, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Send, Shield, Sparkles, Truck, Headphones, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -145,6 +145,24 @@ export const PremiumFooter = () => {
 
         <div className="relative mt-14">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {[
+              { icon: Shield, title: "Secure & Reliable", desc: "SSL, backups, best practices" },
+              { icon: Truck, title: "Fast Delivery", desc: "On-time, every time" },
+              { icon: Headphones, title: "Dedicated Support", desc: "Real humans, real answers" },
+            ].map((b) => (
+              <div key={b.title} className="group flex items-center gap-3 rounded-xl border border-primary-foreground/10 bg-primary-foreground/[0.03] p-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40">
+                <div className="relative flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-gradient-accent shadow-accent transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                  <b.icon className="h-5 w-5 text-accent-foreground" />
+                  <span className="pointer-events-none absolute -inset-1 rounded-lg bg-accent/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold text-primary-foreground">{b.title}</div>
+                  <div className="text-xs text-primary-foreground/60">{b.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
           <div className="mt-6 flex flex-col items-start justify-between gap-3 text-sm text-primary-foreground/50 md:flex-row md:items-center">
             <div>© {new Date().getFullYear()} Click &amp; Buy Digital, Co. All rights reserved.</div>
             <div className="flex items-center gap-4">
