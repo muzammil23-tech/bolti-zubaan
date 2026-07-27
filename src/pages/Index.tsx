@@ -54,6 +54,12 @@ import { ServiceTabs } from "@/components/ServiceTabs";
 import { VideoTestimonialCard } from "@/components/VideoTestimonialCard";
 import { CTABanner } from "@/components/CTABanner";
 import { PremiumFooter } from "@/components/PremiumFooter";
+import { CursorSpotlight } from "@/components/CursorSpotlight";
+import { FloatingShapes3D } from "@/components/FloatingShapes3D";
+import { TextReveal } from "@/components/TextReveal";
+import { ScrollStepper } from "@/components/ScrollStepper";
+import { BlogHighlights } from "@/components/BlogHighlights";
+import { ServiceMarquee } from "@/components/ServiceMarquee";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const WHATSAPP = "https://wa.me/923102523274";
@@ -294,14 +300,21 @@ const Index = () => {
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-glow-pulse" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
         <HeroBackground />
+        <FloatingShapes3D />
+        <CursorSpotlight />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
           <div className="flex flex-col justify-center text-primary-foreground">
             <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent animate-fade-in-up" style={{ animationDelay: "80ms" }}>
               <Sparkles className="h-3.5 w-3.5" /> Digital Solutions • Creative Results
             </span>
-            <h1 className="text-balance text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-              We Design, Develop &amp; <span className="text-gradient-accent">Grow</span> Businesses.
-            </h1>
+            <TextReveal
+              as="h1"
+              by="word"
+              stagger={70}
+              highlight="Grow"
+              text="We Design, Develop & Grow Businesses."
+              className="text-balance text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl"
+            />
             <p className="mt-6 max-w-xl text-lg text-primary-foreground/80 animate-fade-in-up" style={{ animationDelay: "340ms" }}>
               Click &amp; Buy Digital is a Karachi-based creative studio building modern websites, powerful branding, and social campaigns that turn visitors into paying customers.
             </p>
@@ -370,6 +383,7 @@ const Index = () => {
 
       {/* CLIENT LOGOS MARQUEE */}
       <ClientLogos />
+      <ServiceMarquee />
       {/* RECENT WORK TICKER */}
       <RecentWorkTicker />
       <SectionDivider />
@@ -577,6 +591,9 @@ const Index = () => {
       {/* PROCESS IN NUMBERS */}
       <ProcessNumbers />
 
+      {/* OUR PROCESS — scroll-linked stepper */}
+      <ScrollStepper />
+
       {/* PRICING */}
       <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
@@ -666,6 +683,9 @@ const Index = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* BLOG HIGHLIGHTS */}
+      <BlogHighlights />
 
       {/* CONTACT */}
       <section id="contact" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
