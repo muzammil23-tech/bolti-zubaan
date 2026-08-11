@@ -56,6 +56,7 @@ import { CTABanner } from "@/components/CTABanner";
 import { PremiumFooter } from "@/components/PremiumFooter";
 import { CursorSpotlight } from "@/components/CursorSpotlight";
 import { FloatingShapes3D } from "@/components/FloatingShapes3D";
+import { AmbientShapes } from "@/components/AmbientShapes";
 import { TextReveal } from "@/components/TextReveal";
 import { ScrollStepper } from "@/components/ScrollStepper";
 import { BlogHighlights } from "@/components/BlogHighlights";
@@ -457,6 +458,7 @@ const Index = () => {
       {/* PORTFOLIO / GALLERY */}
       <section id="portfolio" className="relative bg-secondary/40 py-24">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" />
+        <AmbientShapes variant="a" />
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
@@ -597,6 +599,7 @@ const Index = () => {
       {/* PRICING */}
       <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+        <AmbientShapes variant="b" />
         <Reveal className="relative mb-16 max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Pricing</span>
           <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
