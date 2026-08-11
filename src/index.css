@@ -385,6 +385,48 @@ All colors MUST be HSL.
   .animate-float-3d { animation: float-3d 7s ease-in-out infinite; }
   .animate-spin-slow { animation: spin-slow 14s linear infinite; }
   .animate-text-rise { animation: text-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-lightbox-zoom { animation: lightbox-zoom 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* Sweeping rotating gradient border on hover */
+  .glow-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -140%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      hsl(var(--accent) / 0.9) 40deg,
+      hsl(22 95% 70%) 70deg,
+      transparent 130deg,
+      transparent 360deg
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: border-spin 3.2s linear infinite;
+    animation-play-state: paused;
+  }
+  .glow-border::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 2px;
+    border-radius: inherit;
+    background: hsl(var(--card));
+  }
+  .glow-border:hover::before,
+  .glow-border:focus-visible::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
+  @media (hover: none) {
+    .glow-border::before { display: none; }
+    .glow-border::after { display: none; }
+  }
 
   /* 3D cube built from 6 gradient faces */
   .shape-cube {
