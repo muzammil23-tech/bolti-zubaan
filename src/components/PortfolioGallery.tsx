@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
-import { ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, X, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/Reveal";
 import p1 from "@/assets/portfolio-1.jpg";
@@ -8,8 +8,14 @@ import p3 from "@/assets/portfolio-3.jpg";
 import p4 from "@/assets/portfolio-4.jpg";
 import p5 from "@/assets/portfolio-5.jpg";
 import p6 from "@/assets/portfolio-6.jpg";
+import p7 from "@/assets/portfolio-7.jpg";
+import p8 from "@/assets/portfolio-8.jpg";
+import p9 from "@/assets/portfolio-9.jpg";
+import p10 from "@/assets/portfolio-10.jpg";
+import p11 from "@/assets/portfolio-11.jpg";
+import p12 from "@/assets/portfolio-12.jpg";
 
-type Category = "All" | "Web Design" | "Branding" | "Social Media" | "E-commerce";
+type Category = "All" | "Web Design" | "Branding" | "Social Media" | "E-commerce" | "Mobile Apps";
 
 interface Project {
   img: string;
@@ -19,6 +25,7 @@ interface Project {
   description: string;
   tags: string[];
   span: string; // grid span classes for bento layout
+  featured?: boolean;
 }
 
 const projects: Project[] = [
@@ -31,6 +38,7 @@ const projects: Project[] = [
       "A conversion-focused e-commerce experience with custom cart, WhatsApp checkout, and lightning-fast product pages. Built for a Karachi retailer scaling nationwide.",
     tags: ["Shopify", "UI/UX", "Payments"],
     span: "md:col-span-2 md:row-span-2",
+    featured: true,
   },
   {
     img: p3,
@@ -82,9 +90,78 @@ const projects: Project[] = [
     tags: ["Landing", "CRO", "Local SEO"],
     span: "md:col-span-1 md:row-span-1",
   },
+  {
+    img: p7,
+    title: "Finlytic App",
+    category: "Mobile Apps",
+    subtitle: "Fintech mobile UI",
+    description:
+      "A dark-mode mobile banking and investment app UI — balance overview, spending breakdown, and live portfolio charts designed for instant clarity.",
+    tags: ["Mobile UI", "Fintech", "Dark Mode"],
+    span: "md:col-span-1 md:row-span-2",
+    featured: true,
+  },
+  {
+    img: p8,
+    title: "Propertix",
+    category: "Web Design",
+    subtitle: "Real estate listing portal",
+    description:
+      "A property marketplace with advanced filters, map-based search, and featured listing cards — built to convert browsers into serious enquiries.",
+    tags: ["Real Estate", "Search UX", "Maps"],
+    span: "md:col-span-2 md:row-span-1",
+  },
+  {
+    img: p9,
+    title: "Grill House",
+    category: "Mobile Apps",
+    subtitle: "Food delivery app & menu",
+    description:
+      "A full food-ordering experience: app screens for browsing, cart and checkout, plus a matching print menu design for in-restaurant branding.",
+    tags: ["Food Delivery", "App UI", "Print Menu"],
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    img: p10,
+    title: "FitForce",
+    category: "Mobile Apps",
+    subtitle: "Fitness tracking app",
+    description:
+      "Workout tracking app with progress rings, strength logs, and a smartwatch companion screen — plus a bold gym brand identity.",
+    tags: ["Fitness", "Wearable", "Branding"],
+    span: "md:col-span-1 md:row-span-1",
+    featured: true,
+  },
+  {
+    img: p11,
+    title: "Luxe Events",
+    category: "Web Design",
+    subtitle: "Wedding & event planning site",
+    description:
+      "An elegant luxury event planning website with editorial typography, invitation showcase, and a step-by-step planning journey section.",
+    tags: ["Luxury", "Editorial", "Events"],
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    img: p12,
+    title: "Urban Threads",
+    category: "E-commerce",
+    subtitle: "Fashion store & app",
+    description:
+      "A fashion e-commerce store with responsive web and mobile shopping flows, wishlist, and packaging brand collateral to match.",
+    tags: ["Fashion", "E-commerce", "Responsive"],
+    span: "md:col-span-2 md:row-span-1",
+  },
 ];
 
-const categories: Category[] = ["All", "Web Design", "Branding", "Social Media", "E-commerce"];
+const categories: Category[] = [
+  "All",
+  "Web Design",
+  "Mobile Apps",
+  "Branding",
+  "Social Media",
+  "E-commerce",
+];
 
 export const PortfolioGallery = () => {
   const [active, setActive] = useState<Category>("All");
@@ -146,14 +223,17 @@ export const PortfolioGallery = () => {
       {/* Bento grid */}
       <div className="grid auto-rows-[220px] grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 md:auto-rows-[240px] lg:grid-cols-4">
         {filtered.map((p, i) => (
-          <button
+          <div
             key={p.title}
-            onClick={() => setOpenIndex(i)}
             style={{ animationDelay: `${i * 70}ms` }}
             className={cn(
-              "group relative overflow-hidden rounded-2xl border border-border bg-card text-left shadow-card outline-none transition-all duration-500 animate-scale-in hover:-translate-y-1 hover:border-accent/50 hover:shadow-elegant focus-visible:ring-2 focus-visible:ring-accent",
+              "glow-border group relative rounded-2xl shadow-card transition-all duration-500 animate-scale-in hover:-translate-y-1 hover:shadow-elegant",
               p.span,
             )}
+          >
+          <button
+            onClick={() => setOpenIndex(i)}
+            className="absolute inset-0 h-full w-full overflow-hidden rounded-2xl border border-border bg-card text-left outline-none transition-colors duration-500 hover:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent"
           >
             <img
               src={p.img}
@@ -167,6 +247,14 @@ export const PortfolioGallery = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-95" />
             {/* Accent glow ring */}
             <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-accent/0 transition-all duration-500 group-hover:ring-accent/40" />
+
+            {/* Featured ribbon */}
+            {p.featured && (
+              <div className="absolute left-4 top-4 z-10 flex items-center gap-1.5 rounded-full bg-gradient-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
+                <Star className="h-3 w-3 fill-current" />
+                Featured
+              </div>
+            )}
 
             {/* Bottom bar: always visible category */}
             <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between p-5 transition-all duration-500 group-hover:translate-y-[-4px]">
@@ -186,17 +274,18 @@ export const PortfolioGallery = () => {
               </div>
             </div>
           </button>
+          </div>
         ))}
       </div>
 
       {/* Lightbox */}
       {activeProject && openIndex !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/85 p-4 backdrop-blur-md animate-fade-in md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/80 p-4 backdrop-blur-2xl animate-fade-in md:p-8"
           onClick={close}
         >
           <div
-            className="relative grid w-full max-w-5xl overflow-hidden rounded-3xl border border-accent/20 bg-card shadow-elegant animate-scale-in md:grid-cols-2"
+            className="relative grid w-full max-w-5xl overflow-hidden rounded-3xl border border-accent/20 bg-card shadow-elegant animate-lightbox-zoom md:grid-cols-2"
             onClick={(e) => e.stopPropagation()}
           >
             <button
