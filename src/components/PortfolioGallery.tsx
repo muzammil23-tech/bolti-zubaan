@@ -223,14 +223,17 @@ export const PortfolioGallery = () => {
       {/* Bento grid */}
       <div className="grid auto-rows-[220px] grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 md:auto-rows-[240px] lg:grid-cols-4">
         {filtered.map((p, i) => (
-          <button
+          <div
             key={p.title}
-            onClick={() => setOpenIndex(i)}
             style={{ animationDelay: `${i * 70}ms` }}
             className={cn(
-              "group relative overflow-hidden rounded-2xl border border-border bg-card text-left shadow-card outline-none transition-all duration-500 animate-scale-in hover:-translate-y-1 hover:border-accent/50 hover:shadow-elegant focus-visible:ring-2 focus-visible:ring-accent",
+              "glow-border group relative rounded-2xl shadow-card transition-all duration-500 animate-scale-in hover:-translate-y-1 hover:shadow-elegant",
               p.span,
             )}
+          >
+          <button
+            onClick={() => setOpenIndex(i)}
+            className="absolute inset-0 h-full w-full overflow-hidden rounded-2xl border border-border bg-card text-left outline-none transition-colors duration-500 hover:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent"
           >
             <img
               src={p.img}
@@ -244,6 +247,14 @@ export const PortfolioGallery = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-95" />
             {/* Accent glow ring */}
             <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-accent/0 transition-all duration-500 group-hover:ring-accent/40" />
+
+            {/* Featured ribbon */}
+            {p.featured && (
+              <div className="absolute left-4 top-4 z-10 flex items-center gap-1.5 rounded-full bg-gradient-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
+                <Star className="h-3 w-3 fill-current" />
+                Featured
+              </div>
+            )}
 
             {/* Bottom bar: always visible category */}
             <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between p-5 transition-all duration-500 group-hover:translate-y-[-4px]">
@@ -263,17 +274,18 @@ export const PortfolioGallery = () => {
               </div>
             </div>
           </button>
+          </div>
         ))}
       </div>
 
       {/* Lightbox */}
       {activeProject && openIndex !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/85 p-4 backdrop-blur-md animate-fade-in md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/80 p-4 backdrop-blur-2xl animate-fade-in md:p-8"
           onClick={close}
         >
           <div
-            className="relative grid w-full max-w-5xl overflow-hidden rounded-3xl border border-accent/20 bg-card shadow-elegant animate-scale-in md:grid-cols-2"
+            className="relative grid w-full max-w-5xl overflow-hidden rounded-3xl border border-accent/20 bg-card shadow-elegant animate-lightbox-zoom md:grid-cols-2"
             onClick={(e) => e.stopPropagation()}
           >
             <button
