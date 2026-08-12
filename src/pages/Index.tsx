@@ -37,6 +37,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
+import { LogoMark } from "@/components/LogoMark";
 import logoAsset from "@/assets/logo.jpg.asset.json";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
@@ -312,6 +313,10 @@ const Index = () => {
         <FloatingShapes3D />
         <CursorSpotlight />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
+          {/* Floating logo watermark */}
+          <div className="pointer-events-none absolute top-8 right-8 opacity-[0.08] animate-float hidden lg:block">
+            <LogoMark size={140} glow={false} label={false} />
+          </div>
           <div className="flex flex-col justify-center text-primary-foreground">
             <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent animate-fade-in-up" style={{ animationDelay: "80ms" }}>
               <Sparkles className="h-3.5 w-3.5" /> Digital Solutions • Creative Results
@@ -401,7 +406,10 @@ const Index = () => {
       <section id="services" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <Reveal className="relative mb-16 max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Services</span>
+          <div className="mb-4 flex items-center gap-3">
+            <LogoMark size={44} />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Services</span>
+          </div>
           <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
             Everything your brand needs, <span className="text-gradient-accent">under one roof.</span>
           </h2>
@@ -469,7 +477,10 @@ const Index = () => {
         <AmbientShapes variant="a" />
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
+            <div className="mb-4 flex items-center gap-3">
+              <LogoMark size={44} />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
+            </div>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
               Recent projects, <span className="text-gradient-accent">real results.</span>
             </h2>
@@ -522,8 +533,11 @@ const Index = () => {
               </ul>
             </div>
             <div className="rounded-2xl bg-gradient-hero p-6 text-primary-foreground md:p-8">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
-                <Check className="h-3.5 w-3.5" /> Click &amp; Buy Digital
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <LogoMark size={36} glow={false} whiteBg />
+                <div className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
+                  <Check className="h-3.5 w-3.5" /> Click &amp; Buy Digital
+                </div>
               </div>
               <ul className="space-y-3">
                 {comparison.us.map((t) => (
@@ -545,7 +559,10 @@ const Index = () => {
         <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client Love</span>
+            <div className="mb-4 flex items-center gap-3">
+              <LogoMark size={44} />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client Love</span>
+            </div>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
               What our clients <span className="text-gradient-accent">actually say.</span>
             </h2>
@@ -608,8 +625,15 @@ const Index = () => {
       <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <AmbientShapes variant="b" />
+        {/* Large background logo watermark */}
+        <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.05] hidden xl:block">
+          <LogoMark size={280} glow={false} label={false} />
+        </div>
         <Reveal className="relative mb-16 max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Pricing</span>
+          <div className="mb-4 flex items-center gap-3">
+            <LogoMark size={44} />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Pricing</span>
+          </div>
           <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
             Transparent packages, <span className="text-gradient-accent">no hidden costs.</span>
           </h2>
@@ -672,7 +696,10 @@ const Index = () => {
       <section id="faq" className="bg-secondary/40 py-24">
         <div className="mx-auto max-w-4xl px-5 lg:px-8">
           <Reveal className="mb-12 text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">FAQ</span>
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <LogoMark size={44} />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">FAQ</span>
+            </div>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
               Aksar poochay <span className="text-accent">jaane wale sawaal</span>
             </h2>
@@ -751,9 +778,12 @@ const Index = () => {
           </Reveal>
 
           <Reveal animation="slide-in-right" className="rounded-3xl border border-border bg-card p-6 shadow-elegant md:p-8">
-            <div className="mb-6 flex items-center gap-2 text-accent">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-xs font-semibold uppercase tracking-widest">Get a Free Quote</span>
+            <div className="mb-6 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 text-accent">
+                <Sparkles className="h-4 w-4" />
+                <span className="text-xs font-semibold uppercase tracking-widest">Get a Free Quote</span>
+              </div>
+              <LogoMark size={40} />
             </div>
             <LeadForm />
           </Reveal>
