@@ -37,6 +37,9 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
+import logoAsset from "@/assets/logo.jpg.asset.json";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { ClientLogos } from "@/components/ClientLogos";
 import { HeroBackground } from "@/components/HeroBackground";
@@ -244,6 +247,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
+      <BackToTop />
       <StickyMiniNav />
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
