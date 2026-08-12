@@ -14,6 +14,10 @@ export const CTABanner = () => {
           <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
           <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-accent/30 blur-3xl animate-glow-pulse" />
           <div className="pointer-events-none absolute -right-20 -bottom-20 h-72 w-72 rounded-full bg-accent-glow/20 blur-3xl animate-glow-pulse" style={{ animationDelay: "1s" }} />
+          {/* Large background logo watermark */}
+          <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06]">
+            <LogoMark size={220} glow={false} label={false} />
+          </div>
           <div className="relative flex flex-col items-center gap-6 text-center text-primary-foreground">
             <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" /> Ready to Launch?
