@@ -37,6 +37,9 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
+import logoAsset from "@/assets/logo.jpg.asset.json";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { ClientLogos } from "@/components/ClientLogos";
 import { HeroBackground } from "@/components/HeroBackground";
@@ -244,14 +247,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
+      <BackToTop />
       <StickyMiniNav />
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#top" className="group flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent shadow-accent transition-smooth group-hover:scale-110">
-              <span className="font-bold text-accent-foreground">C</span>
-            </div>
+            <img
+              src={logoAsset.url}
+              alt="Click & Buy Digital, Co. logo"
+              className="h-11 w-11 rounded-full bg-white object-contain shadow-accent transition-smooth group-hover:scale-110"
+              loading="eager"
+            />
             <div className="leading-tight">
               <div className="font-semibold text-primary">Click &amp; Buy</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-accent">Digital, Co.</div>

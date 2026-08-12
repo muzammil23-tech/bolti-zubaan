@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner";
+import logoAsset from "@/assets/logo.jpg.asset.json";
 
 const WHATSAPP = "https://wa.me/923102523274";
 const PHONE = "tel:+923102523274";
@@ -43,9 +44,9 @@ export const PremiumFooter = () => {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2">
-              <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
-                <span className="font-bold text-accent-foreground">C</span>
-                <span className="absolute -inset-1 rounded-full bg-accent/40 blur-md animate-glow-pulse" />
+              <div className="relative h-12 w-12">
+                <img src={logoAsset.url} alt="Click & Buy Digital, Co. logo" className="relative h-12 w-12 rounded-full bg-white object-contain shadow-accent" loading="lazy" />
+                <span className="pointer-events-none absolute -inset-1 rounded-full bg-accent/40 blur-md animate-glow-pulse" />
               </div>
               <div className="leading-tight">
                 <div className="font-semibold">Click &amp; Buy Digital</div>

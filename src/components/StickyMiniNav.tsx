@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import logoAsset from "@/assets/logo.jpg.asset.json";
 
 const WHATSAPP = "https://wa.me/923102523274";
 
@@ -20,9 +21,7 @@ export const StickyMiniNav = () => {
     >
       <div className="flex items-center justify-between gap-3 rounded-full border border-accent/30 bg-background/80 px-4 py-2 shadow-elegant backdrop-blur-xl">
         <a href="#top" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-accent shadow-accent">
-            <Sparkles className="h-4 w-4 text-accent-foreground" />
-          </div>
+          <img src={logoAsset.url} alt="Click & Buy Digital logo" className="h-8 w-8 rounded-full bg-white object-contain shadow-accent" />
           <span className="hidden text-sm font-semibold text-primary sm:inline">Click &amp; Buy</span>
         </a>
         <nav className="hidden items-center gap-5 md:flex">
