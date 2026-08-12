@@ -477,7 +477,10 @@ const Index = () => {
         <AmbientShapes variant="a" />
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
+            <div className="mb-4 flex items-center gap-3">
+              <LogoMark size={44} />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
+            </div>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
               Recent projects, <span className="text-gradient-accent">real results.</span>
             </h2>
@@ -556,7 +559,10 @@ const Index = () => {
         <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client Love</span>
+            <div className="mb-4 flex items-center gap-3">
+              <LogoMark size={44} />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client Love</span>
+            </div>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
               What our clients <span className="text-gradient-accent">actually say.</span>
             </h2>
@@ -690,7 +696,10 @@ const Index = () => {
       <section id="faq" className="bg-secondary/40 py-24">
         <div className="mx-auto max-w-4xl px-5 lg:px-8">
           <Reveal className="mb-12 text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">FAQ</span>
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <LogoMark size={44} />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">FAQ</span>
+            </div>
             <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
               Aksar poochay <span className="text-accent">jaane wale sawaal</span>
             </h2>
