@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal } from "@/components/Reveal";
+import { LogoMark } from "@/components/LogoMark";
 
 const WHATSAPP = "https://wa.me/923102523274";
 
