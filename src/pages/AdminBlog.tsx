@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowLeft, Loader2, Plus, Trash2, LogOut, Save } from "lucide-react";
+import { LogoMark } from "@/components/LogoMark";
 
 type Post = {
   id: string;
