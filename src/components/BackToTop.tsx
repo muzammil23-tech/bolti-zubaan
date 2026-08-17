@@ -15,7 +15,7 @@ export const BackToTop = () => {
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-24 right-5 z-[65] flex h-11 w-11 items-center justify-center rounded-full bg-gradient-accent text-accent-foreground shadow-accent transition-all duration-500 hover:-translate-y-1 ${
+      className={`fixed bottom-[4.75rem] right-4 z-[75] flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent text-accent-foreground shadow-accent transition-all duration-500 hover:-translate-y-1 sm:bottom-24 sm:right-6 sm:h-11 sm:w-11 ${
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
       }`}
     >

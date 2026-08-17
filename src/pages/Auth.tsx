@@ -51,9 +51,7 @@ export default function Auth() {
     <div className="min-h-screen grid place-items-center bg-gradient-hero p-5">
       <div className="w-full max-w-md rounded-3xl bg-card p-8 shadow-elegant">
         <Link to="/" className="flex items-center gap-2 mb-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-accent">
-            <Sparkles className="h-5 w-5 text-accent-foreground" />
-          </div>
+          <LogoMark size={40} label={false} />
           <div className="font-semibold text-primary">Click &amp; Buy Digital</div>
         </Link>
         <h1 className="text-2xl font-bold text-primary">

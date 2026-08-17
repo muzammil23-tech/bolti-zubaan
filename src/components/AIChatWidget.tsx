@@ -59,17 +59,17 @@ export const AIChatWidget = () => {
         onClick={() => setOpen((o) => !o)}
         aria-label="Open AI assistant"
         className={cn(
-          "group fixed bottom-6 left-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-elegant transition-all duration-300 hover:scale-110",
+          "group fixed bottom-4 left-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-elegant transition-all duration-300 hover:scale-110 sm:bottom-6 sm:left-6 sm:h-14 sm:w-14",
           open && "scale-95",
         )}
       >
         <span className="pointer-events-none absolute -inset-2 rounded-full bg-accent/25 opacity-70 blur-lg animate-glow-pulse" />
         <span className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-accent/40" />
         {open ? (
-          <X className="relative h-6 w-6" />
+          <X className="relative h-5 w-5 sm:h-6 sm:w-6" />
         ) : (
           <>
-            <Bot className="relative h-6 w-6 text-accent" />
+            <Bot className="relative h-5 w-5 text-accent sm:h-6 sm:w-6" />
             <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-gradient-accent px-1 text-[9px] font-bold uppercase tracking-wider text-accent-foreground shadow-accent">
               AI
             </span>
@@ -83,7 +83,7 @@ export const AIChatWidget = () => {
       {/* Panel */}
       <div
         className={cn(
-          "fixed bottom-24 left-6 z-40 w-[calc(100vw-3rem)] max-w-sm origin-bottom-left transition-all duration-300",
+          "fixed bottom-20 left-4 z-[90] w-[calc(100vw-2rem)] max-w-sm origin-bottom-left transition-all duration-300 sm:bottom-24 sm:left-6 sm:w-[calc(100vw-3rem)]",
           open
             ? "pointer-events-auto scale-100 opacity-100 translate-y-0"
             : "pointer-events-none scale-95 opacity-0 translate-y-3",

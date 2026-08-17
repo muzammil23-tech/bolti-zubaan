@@ -17,6 +17,27 @@ import p12 from "@/assets/portfolio-12.jpg";
 
 type Category = "All" | "Web Design" | "Branding" | "Social Media" | "E-commerce" | "Mobile Apps";
 
+/** Portfolio image with shimmer skeleton until loaded */
+const ThumbImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      {!loaded && <div className="skeleton-shimmer rounded-2xl" aria-hidden />}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-110",
+          loaded ? "opacity-100" : "opacity-0",
+        )}
+      />
+    </>
+  );
+};
+
 interface Project {
   img: string;
   title: string;
@@ -235,12 +256,7 @@ export const PortfolioGallery = () => {
             onClick={() => setOpenIndex(i)}
             className="absolute inset-0 h-full w-full overflow-hidden rounded-2xl border border-border bg-card text-left outline-none transition-colors duration-500 hover:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent"
           >
-            <img
-              src={p.img}
-              alt={`${p.title} — ${p.category}`}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
-            />
+            <ThumbImage src={p.img} alt={`${p.title} — ${p.category}`} />
             {/* Base subtle overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
             {/* Hover reveal gradient */}
