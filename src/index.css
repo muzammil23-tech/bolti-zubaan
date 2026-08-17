@@ -227,6 +227,10 @@ All colors MUST be HSL.
   0%   { opacity: 0; transform: scale(0.92) translateY(12px); }
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
 
 @layer utilities {
   /* Premium button lift on hover */
@@ -386,6 +390,26 @@ All colors MUST be HSL.
   .animate-spin-slow { animation: spin-slow 14s linear infinite; }
   .animate-text-rise { animation: text-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
   .animate-lightbox-zoom { animation: lightbox-zoom 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* Loading skeleton with shimmer sweep */
+  .skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, hsl(222 40% 20%), hsl(222 55% 12%));
+  }
+  .skeleton-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--accent) / 0.18),
+      transparent
+    );
+    animation: shimmer-sweep 1.4s ease-in-out infinite;
+  }
 
   /* Sweeping rotating gradient border on hover */
   .glow-border {
