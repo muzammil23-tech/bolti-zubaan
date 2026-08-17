@@ -53,7 +53,6 @@ import { CodeSnippetCard } from "@/components/CodeSnippetCard";
 import { SectionDivider } from "@/components/SectionDivider";
 import { TiltCard } from "@/components/TiltCard";
 import { MagneticButton } from "@/components/MagneticButton";
-import { StickyMiniNav } from "@/components/StickyMiniNav";
 import { RatingBadge } from "@/components/RatingBadge";
 import { ProcessNumbers } from "@/components/ProcessNumbers";
 import { RecentWorkTicker } from "@/components/RecentWorkTicker";
@@ -625,6 +624,9 @@ const Index = () => {
             <p className="mt-4 text-lg text-muted-foreground">
               Real feedback from businesses we've grown. No paid reviews, no fake stars.
             </p>
+            <div className="mt-6">
+              <RatingBadge tone="light" />
+            </div>
           </Reveal>
           <Reveal>
             <Carousel
