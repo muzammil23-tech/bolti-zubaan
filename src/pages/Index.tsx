@@ -365,14 +365,14 @@ const Index = () => {
         <HeroBackground />
         <FloatingShapes3D />
         <CursorSpotlight />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-5 pb-28 pt-12 sm:gap-10 sm:pb-24 sm:pt-16 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:pb-28 lg:pt-28">
           {/* Floating logo watermark */}
           <div className="pointer-events-none absolute top-8 right-8 opacity-[0.08] animate-float hidden lg:block">
             <LogoMark size={140} glow={false} label={false} />
           </div>
-          <div className="flex flex-col justify-center text-primary-foreground">
-            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent animate-fade-in-up" style={{ animationDelay: "80ms" }}>
-              <Sparkles className="h-3.5 w-3.5" /> Digital Solutions • Creative Results
+          <div className="relative z-10 flex flex-col justify-center text-primary-foreground">
+            <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-primary/40 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-accent backdrop-blur-md animate-fade-in-up sm:mb-5 sm:px-4 sm:text-xs" style={{ animationDelay: "80ms" }}>
+              <Sparkles className="h-3.5 w-3.5 flex-none" /> Digital Solutions • Creative Results
             </span>
             <TextReveal
               as="h1"
@@ -380,12 +380,12 @@ const Index = () => {
               stagger={70}
               highlight="Grow"
               text="We Design, Develop & Grow Businesses."
-              className="text-balance text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl"
+              className="text-balance text-[2rem] font-bold leading-[1.08] sm:text-4xl md:text-6xl lg:text-7xl"
             />
-            <p className="mt-6 max-w-xl text-lg text-primary-foreground/80 animate-fade-in-up" style={{ animationDelay: "340ms" }}>
+            <p className="mt-4 max-w-xl text-base text-primary-foreground/80 animate-fade-in-up sm:mt-6 sm:text-lg" style={{ animationDelay: "340ms" }}>
               Click &amp; Buy Digital is a Karachi-based creative studio building modern websites, powerful branding, and social campaigns that turn visitors into paying customers.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "460ms" }}>
+            <div className="mt-6 flex flex-wrap gap-3 animate-fade-in-up sm:mt-8 sm:gap-4" style={{ animationDelay: "460ms" }}>
               <MagneticButton>
                 <a href="#pricing">
                   <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
@@ -401,7 +401,10 @@ const Index = () => {
                 </a>
               </MagneticButton>
             </div>
-            <div className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-primary-foreground/15 pt-6 animate-fade-in-up" style={{ animationDelay: "600ms" }}>
+            <div className="mt-6 animate-fade-in-up sm:mt-8" style={{ animationDelay: "540ms" }}>
+              <RatingBadge />
+            </div>
+            <div className="mt-6 grid max-w-md grid-cols-3 gap-4 border-t border-primary-foreground/15 pt-5 animate-fade-in-up sm:mt-8 sm:gap-6 sm:pt-6" style={{ animationDelay: "600ms" }}>
               <StatCounter target={50} suffix="+" label="Projects" delay={400} />
               <StatCounter target={100} suffix="%" label="On-Time" delay={520} />
               <StatCounter target={5} suffix="★" label="Rated" delay={640} />
@@ -853,9 +856,9 @@ const Index = () => {
         target="_blank"
         rel="noreferrer"
         aria-label="Chat on WhatsApp"
-        className="group fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-accent shadow-accent transition-all duration-300 hover:scale-110 animate-float"
+        className="group fixed bottom-4 right-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-gradient-accent shadow-accent transition-all duration-300 hover:scale-110 animate-float sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
       >
-        <MessageCircle className="h-6 w-6 text-accent-foreground" />
+        <MessageCircle className="h-5 w-5 text-accent-foreground sm:h-6 sm:w-6" />
         <span className="pointer-events-none absolute inset-0 rounded-full bg-accent/40 animate-ping" />
         <span className="pointer-events-none absolute -inset-2 rounded-full bg-accent/30 opacity-60 blur-lg animate-glow-pulse" />
         <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground opacity-0 shadow-elegant transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-1">
