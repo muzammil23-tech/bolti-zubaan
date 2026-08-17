@@ -13,7 +13,7 @@ export const FloatingShapes3D = () => {
 
       {/* Sphere - top right */}
       <div
-        className="absolute right-[10%] top-[10%] h-16 w-16 rounded-full animate-float-3d"
+        className="absolute right-[10%] top-[10%] hidden h-16 w-16 rounded-full animate-float-3d md:block"
         style={{
           background:
             "radial-gradient(circle at 30% 30%, hsl(22 95% 75%), hsl(18 90% 45%) 55%, hsl(222 65% 12%) 100%)",
@@ -62,7 +62,7 @@ export const FloatingShapes3D = () => {
 
       {/* Tiny orbiting dot */}
       <div
-        className="absolute left-1/2 top-[45%] h-3 w-3 -translate-x-1/2 rounded-full bg-accent shadow-accent animate-float-3d"
+        className="absolute left-1/2 top-[45%] hidden h-3 w-3 -translate-x-1/2 rounded-full bg-accent shadow-accent animate-float-3d md:block"
         style={{ animationDelay: "0.8s" }}
       />
     </div>
