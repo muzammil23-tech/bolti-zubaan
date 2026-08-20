@@ -457,6 +457,8 @@ const Index = () => {
         </div>
       </section>
 
+      <WaveDivider className="relative z-10 -mt-[54px] text-background sm:-mt-[74px] lg:-mt-[90px]" />
+
       {/* CLIENT LOGOS MARQUEE */}
       <ClientLogos />
       <ServiceMarquee />
@@ -510,6 +512,7 @@ const Index = () => {
       {/* HOW IT WORKS — live workflow */}
       <section id="how-it-works" className="relative overflow-hidden border-y border-border bg-secondary/30 section-pad">
         <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <div className="pointer-events-none absolute inset-0 glow-violet-orange opacity-80" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 text-center">
             <Eyebrow>How It Works</Eyebrow>
@@ -534,6 +537,7 @@ const Index = () => {
       <SectionDivider />
 
       {/* PORTFOLIO / GALLERY */}
+      <WaveDivider className="relative z-10 -mb-1 text-secondary/40" />
       <section id="portfolio" className="relative bg-secondary/40 section-pad">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" />
         <AmbientShapes variant="a" />
@@ -618,6 +622,7 @@ const Index = () => {
 
       {/* TESTIMONIALS */}
       <section id="testimonials" className="relative bg-secondary/40 section-pad">
+        <div className="pointer-events-none absolute inset-0 glow-blue-orange opacity-90" />
         <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
@@ -688,6 +693,7 @@ const Index = () => {
 
       {/* PRICING */}
       <section id="pricing" className="relative mx-auto max-w-7xl px-5 section-pad lg:px-8">
+        <div className="pointer-events-none absolute inset-0 glow-violet-orange opacity-60" />
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <AmbientShapes variant="b" />
         {/* Large background logo watermark */}
