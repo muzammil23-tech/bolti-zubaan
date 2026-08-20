@@ -474,3 +474,93 @@ All colors MUST be HSL.
     filter: blur(0.5px);
   }
 }
+
+/* ---------- Premium polish: sheen buttons, aurora glows, hero frame ---------- */
+@keyframes btn-sheen-sweep {
+  0%   { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+  8%   { opacity: 1; }
+  38%  { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+  100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+@keyframes frame-glow-spin {
+  to { transform: rotate(360deg); }
+}
+
+@layer utilities {
+  /* Animated sheen that sweeps across primary CTAs every few seconds */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    top: -30%;
+    bottom: -30%;
+    left: 0;
+    width: 45%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(0 0% 100% / 0.38),
+      transparent
+    );
+    animation: btn-sheen-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+
+  /* Secondary accent glows for section variety */
+  .glow-violet-orange {
+    background: radial-gradient(
+        45% 55% at 15% 20%,
+        hsl(265 80% 60% / 0.22),
+        transparent 70%
+      ),
+      radial-gradient(50% 55% at 85% 75%, hsl(18 90% 55% / 0.2), transparent 70%);
+  }
+  .glow-blue-orange {
+    background: radial-gradient(
+        48% 55% at 80% 15%,
+        hsl(205 90% 55% / 0.2),
+        transparent 70%
+      ),
+      radial-gradient(45% 50% at 12% 80%, hsl(22 95% 62% / 0.18), transparent 70%);
+  }
+
+  /* Glowing rotating gradient frame around the hero visual */
+  .hero-frame {
+    position: relative;
+    border-radius: 1.6rem;
+    padding: 2px;
+    isolation: isolate;
+  }
+  .hero-frame::before {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    z-index: -1;
+    background: conic-gradient(
+      from 0deg,
+      hsl(18 90% 55% / 0.9),
+      hsl(265 80% 62% / 0.55),
+      hsl(205 90% 60% / 0.5),
+      hsl(22 95% 65% / 0.9),
+      hsl(18 90% 55% / 0.9)
+    );
+    animation: frame-glow-spin 12s linear infinite;
+    filter: blur(2px);
+  }
+  .hero-frame::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    z-index: -1;
+    border-radius: 1.5rem;
+    background: hsl(222 65% 12%);
+  }
+
+  /* Editorial rhythm helpers */
+  .section-pad { @apply py-24 sm:py-28 lg:py-36; }
+  .heading-tight { letter-spacing: -0.03em; }
+}
