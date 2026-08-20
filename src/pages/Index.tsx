@@ -422,14 +422,18 @@ const Index = () => {
             <div className="pointer-events-none absolute -inset-6 orbit-counter">
               <div className="absolute -bottom-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent-glow" />
             </div>
-            <TiltCard max={8} className="relative rounded-3xl">
-              <img
-                src={heroVisual}
-                alt="Digital agency dashboard visualization"
-                width={1200}
-                height={1008}
-                className="relative rounded-3xl shadow-elegant animate-float"
-              />
+            <HeroStatChips />
+            <TiltCard max={8} className="relative rounded-3xl animate-float" style={{ animationDuration: "8s" }}>
+              <div className="hero-frame shadow-elegant">
+                <img
+                  src={heroVisual}
+                  alt="Digital agency dashboard visualization"
+                  width={1200}
+                  height={1008}
+                  className="relative block w-full rounded-[1.45rem]"
+                />
+              </div>
+
               {/* Floating rotating badge */}
               <div className="pointer-events-none absolute -bottom-6 -left-6 hidden md:block">
                 <div className="relative flex h-24 w-24 items-center justify-center">
