@@ -423,7 +423,7 @@ const Index = () => {
               <div className="absolute -bottom-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent-glow" />
             </div>
             <HeroStatChips />
-            <TiltCard max={8} className="relative rounded-3xl animate-float" style={{ animationDuration: "8s" }}>
+            <TiltCard max={8} className="relative rounded-3xl animate-float [animation-duration:8s]">
               <div className="hero-frame shadow-elegant">
                 <img
                   src={heroVisual}
