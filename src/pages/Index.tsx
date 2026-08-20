@@ -51,6 +51,9 @@ import { AIChatWidget } from "@/components/AIChatWidget";
 import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { CodeSnippetCard } from "@/components/CodeSnippetCard";
 import { SectionDivider } from "@/components/SectionDivider";
+import { Eyebrow } from "@/components/Eyebrow";
+import { WaveDivider } from "@/components/WaveDivider";
+import { HeroStatChips } from "@/components/HeroStatChips";
 import { TiltCard } from "@/components/TiltCard";
 import { MagneticButton } from "@/components/MagneticButton";
 import { RatingBadge } from "@/components/RatingBadge";
@@ -233,7 +236,7 @@ const LeadForm = () => {
         <Textarea id="message" placeholder="Apne project ke baare me batayein…" className="mt-1.5 min-h-[110px]" {...field("message")} maxLength={1000} />
         {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
       </div>
-      <Button type="submit" size="lg" disabled={loading} className="btn-lift w-full bg-gradient-accent text-accent-foreground shadow-accent">
+      <Button type="submit" size="lg" disabled={loading} className="btn-lift btn-sheen w-full bg-gradient-accent text-accent-foreground shadow-accent">
         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
         {loading ? "Bhej rahe hain…" : "Free Consultation Book Karein"}
       </Button>
@@ -305,7 +308,7 @@ const Index = () => {
             <Link to="/blog" className="nav-underline text-sm font-medium text-muted-foreground transition-smooth hover:text-accent">Blog</Link>
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
-            <Button className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
+            <Button className="btn-lift btn-sheen bg-gradient-accent text-accent-foreground shadow-accent">
               WhatsApp Us <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </a>
@@ -342,7 +345,7 @@ const Index = () => {
               ))}
               <Link to="/blog" onClick={() => setMenuOpen(false)} style={{ animationDelay: `${80 + 6 * 55}ms` }} className="mobile-menu-item rounded-md px-3 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:translate-x-1 hover:bg-secondary hover:text-accent">Blog</Link>
               <a href={WHATSAPP} target="_blank" rel="noreferrer" style={{ animationDelay: `${80 + 7 * 55}ms` }} className="mobile-menu-item">
-                <Button className="btn-lift mt-2 w-full bg-gradient-accent text-accent-foreground shadow-accent">WhatsApp Us</Button>
+                <Button className="btn-lift btn-sheen mt-2 w-full bg-gradient-accent text-accent-foreground shadow-accent">WhatsApp Us</Button>
               </a>
               <a href={PHONE} style={{ animationDelay: `${80 + 8 * 55}ms` }} className="mobile-menu-item">
                 <Button variant="outline" className="btn-lift mt-2 w-full border-accent/40 text-accent">
@@ -387,7 +390,7 @@ const Index = () => {
             <div className="mt-6 flex flex-wrap gap-3 animate-fade-in-up sm:mt-8 sm:gap-4" style={{ animationDelay: "460ms" }}>
               <MagneticButton>
                 <a href="#pricing">
-                  <Button size="lg" className="btn-lift bg-gradient-accent text-accent-foreground shadow-accent">
+                  <Button size="lg" className="btn-lift btn-sheen bg-gradient-accent text-accent-foreground shadow-accent">
                     Start From PKR 9,999 <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
@@ -458,14 +461,14 @@ const Index = () => {
       <SectionDivider />
 
       {/* SERVICES */}
-      <section id="services" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section id="services" className="relative mx-auto max-w-7xl px-5 section-pad lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <Reveal className="relative mb-16 max-w-2xl">
           <div className="mb-4 flex items-center gap-3">
             <LogoMark size={44} />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Services</span>
+            <Eyebrow>Our Services</Eyebrow>
           </div>
-          <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+          <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
             Everything your brand needs, <span className="text-gradient-accent">under one roof.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
@@ -501,12 +504,12 @@ const Index = () => {
       </section>
 
       {/* HOW IT WORKS — live workflow */}
-      <section id="how-it-works" className="relative overflow-hidden border-y border-border bg-secondary/30 py-24">
+      <section id="how-it-works" className="relative overflow-hidden border-y border-border bg-secondary/30 section-pad">
         <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">How It Works</span>
-            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            <Eyebrow>How It Works</Eyebrow>
+            <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
               A live workflow — <span className="text-gradient-accent">click to launch.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
@@ -520,23 +523,23 @@ const Index = () => {
       </section>
 
       {/* INTERACTIVE SERVICE TABS */}
-      <section className="relative py-24">
+      <section className="relative section-pad">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <ServiceTabs />
       </section>
       <SectionDivider />
 
       {/* PORTFOLIO / GALLERY */}
-      <section id="portfolio" className="relative bg-secondary/40 py-24">
+      <section id="portfolio" className="relative bg-secondary/40 section-pad">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" />
         <AmbientShapes variant="a" />
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
             <div className="mb-4 flex items-center gap-3">
               <LogoMark size={44} />
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Work</span>
+              <Eyebrow>Our Work</Eyebrow>
             </div>
-            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
               Recent projects, <span className="text-gradient-accent">real results.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -549,11 +552,11 @@ const Index = () => {
       <SectionDivider />
 
       {/* WHY US */}
-      <section id="why-us" className="py-24">
+      <section id="why-us" className="section-pad">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Why Choose Us</span>
-            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            <Eyebrow>Why Choose Us</Eyebrow>
+            <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
               Work with professionals. <span className="text-gradient-accent">Not excuses.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -610,15 +613,15 @@ const Index = () => {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testimonials" className="relative bg-secondary/40 py-24">
+      <section id="testimonials" className="relative bg-secondary/40 section-pad">
         <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mb-16 max-w-2xl">
             <div className="mb-4 flex items-center gap-3">
               <LogoMark size={44} />
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client Love</span>
+              <Eyebrow>Client Love</Eyebrow>
             </div>
-            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
               What our clients <span className="text-gradient-accent">actually say.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -680,7 +683,7 @@ const Index = () => {
       <ScrollStepper />
 
       {/* PRICING */}
-      <section id="pricing" className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section id="pricing" className="relative mx-auto max-w-7xl px-5 section-pad lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <AmbientShapes variant="b" />
         {/* Large background logo watermark */}
@@ -690,9 +693,9 @@ const Index = () => {
         <Reveal className="relative mb-16 max-w-2xl">
           <div className="mb-4 flex items-center gap-3">
             <LogoMark size={44} />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Pricing</span>
+            <Eyebrow>Pricing</Eyebrow>
           </div>
-          <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+          <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
             Transparent packages, <span className="text-gradient-accent">no hidden costs.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
@@ -751,14 +754,14 @@ const Index = () => {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="bg-secondary/40 py-24">
+      <section id="faq" className="bg-secondary/40 section-pad">
         <div className="mx-auto max-w-4xl px-5 lg:px-8">
           <Reveal className="mb-12 text-center">
             <div className="mb-4 flex items-center justify-center gap-3">
               <LogoMark size={44} />
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">FAQ</span>
+              <Eyebrow>FAQ</Eyebrow>
             </div>
-            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
               Aksar poochay <span className="text-accent">jaane wale sawaal</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -784,11 +787,11 @@ const Index = () => {
       <BlogHighlights />
 
       {/* CONTACT */}
-      <section id="contact" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section id="contact" className="mx-auto max-w-7xl px-5 section-pad lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal animation="slide-in-left">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Let's Talk</span>
-            <h2 className="mt-3 text-4xl font-bold text-primary md:text-5xl">
+            <Eyebrow>Let's Talk</Eyebrow>
+            <h2 className="mt-3 heading-tight text-4xl font-bold text-primary md:text-5xl lg:text-[3.4rem]">
               Free consultation <span className="text-accent">book karein.</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
