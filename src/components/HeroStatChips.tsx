@@ -1,8 +1,8 @@
 import { TrendingUp, Clock, ShieldCheck } from "lucide-react";
 
 const chips = [
-  { icon: TrendingUp, label: "+150% Growth", pos: "-left-4 top-8 sm:-left-8 sm:top-12", delay: "900ms", float: "0s" },
-  { icon: Clock, label: "24/7 Support", pos: "-right-3 top-1/3 sm:-right-8", delay: "1100ms", float: "1.2s" },
+  { icon: TrendingUp, label: "+150% Growth", pos: "left-1 top-6 sm:-left-8 sm:top-12", delay: "900ms", float: "0s" },
+  { icon: Clock, label: "24/7 Support", pos: "right-1 top-1/3 sm:-right-8", delay: "1100ms", float: "1.2s" },
   { icon: ShieldCheck, label: "100% On-Time", pos: "right-4 -bottom-5 sm:right-8 sm:-bottom-6", delay: "1300ms", float: "2.1s" },
 ];
 
