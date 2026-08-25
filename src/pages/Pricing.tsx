@@ -26,9 +26,10 @@ const Pricing = () => (
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-3">
           {pricingTiers.map((t, i) => (
-            <Reveal key={t.name} animation="scale-in" delay={i * 90}>
+            <Reveal key={t.name} animation="scale-in" delay={i * 90} className="h-full">
+              <TiltCard max={7} className="h-full">
               <div
-                className={`relative flex h-full flex-col rounded-3xl border p-7 shadow-card transition-smooth hover:-translate-y-2 sm:p-8 ${
+                className={`glass-card glow-border relative flex h-full flex-col rounded-3xl border p-7 shadow-card transition-smooth hover:-translate-y-2 sm:p-8 ${
                   t.popular ? "border-accent bg-card shadow-accent" : "border-border bg-card"
                 }`}
               >
