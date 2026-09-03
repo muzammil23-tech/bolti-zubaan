@@ -18,7 +18,7 @@ export const PageHeader = ({ eyebrow, title, subtitle, children }: PageHeaderPro
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-animated-gradient" />
       <div className="grain-overlay pointer-events-none absolute inset-0" />
-      <div className="absolute inset-0 opacity-70" style={{ background: "var(--gradient-glow)" }} />
+      <div className="page-header-glow absolute inset-0 opacity-70" aria-hidden="true" />
       <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl animate-glow-pulse" />
       <div
         className="pointer-events-none absolute -bottom-28 -left-24 h-80 w-80 rounded-full bg-accent/10 blur-3xl animate-glow-pulse"

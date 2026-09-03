@@ -13,6 +13,7 @@ import { ClientLogos } from "@/components/ClientLogos";
 import { AmbientShapes } from "@/components/AmbientShapes";
 import { SectionDivider } from "@/components/SectionDivider";
 import { whyUs, comparison, WHATSAPP } from "@/data/site";
+import { glassTint } from "@/lib/utils";
 import logoAsset from "@/assets/logo.jpg.asset.json";
 
 const timeline = [
@@ -51,7 +52,7 @@ const About = () => (
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <Reveal animation="slide-in-left">
           <TiltCard max={7}>
-            <div className="glass-card glow-border relative rounded-3xl border border-border bg-card p-8 shadow-elegant sm:p-10">
+            <div className="glass-card glass-tint-orange glow-border relative rounded-3xl border p-8 shadow-elegant sm:p-10">
               <div className="flex items-center gap-4">
                 <img
                   src={logoAsset.url}
@@ -92,7 +93,7 @@ const About = () => (
             {values.map((v, i) => (
               <div
                 key={v.title}
-                className="glass-card rounded-2xl border border-border bg-card/70 p-5 transition-smooth hover:-translate-y-1 hover:border-accent/40"
+                className={`glass-card ${glassTint(i + 1)} rounded-2xl border p-5 transition-smooth hover:-translate-y-1 hover:border-accent/40`}
                 style={{ animationDelay: `${i * 80}ms` }}
               >
                 <v.icon className="h-5 w-5 text-accent" />
@@ -126,9 +127,9 @@ const About = () => (
         </Reveal>
 
         <div className="relative mt-14 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
-          {timeline.map((t, i) => (
-            <Reveal key={t.year} delay={i * 90}>
-              <div className="glass-card group relative h-full rounded-3xl border border-border bg-card p-6 shadow-card transition-smooth hover:-translate-y-2 hover:border-accent/50">
+            {timeline.map((t, i) => (
+              <Reveal key={t.year} delay={i * 90}>
+                <div className={`glass-card ${glassTint(i + 2)} group relative h-full rounded-3xl border p-6 shadow-card transition-smooth hover:-translate-y-2 hover:border-accent/50`}>
                 <div className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-3 py-1 text-xs font-bold text-accent-foreground shadow-accent">
                   {t.year}
                 </div>
@@ -156,7 +157,7 @@ const About = () => (
           {whyUs.map((w, i) => (
             <Reveal key={w.title} animation="scale-in" delay={i * 80}>
               <TiltCard max={9} className="h-full">
-                <div className="glass-card glow-border h-full rounded-3xl border border-border bg-card p-6 shadow-card">
+                <div className={`glass-card ${glassTint(i)} glow-border h-full rounded-3xl border p-6 shadow-card`}>
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent shadow-accent">
                     <w.icon className="h-6 w-6 text-accent-foreground" />
                   </div>
@@ -182,7 +183,7 @@ const About = () => (
             </div>
           </Reveal>
           <Reveal animation="slide-in-right">
-            <div className="glass-card h-full rounded-3xl border border-accent/40 bg-card p-7 shadow-accent">
+            <div className="glass-card glass-tint-orange h-full rounded-3xl border border-accent/40 p-7 shadow-accent">
               <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
                 <Rocket className="h-4 w-4" /> Click &amp; Buy Digital
               </div>

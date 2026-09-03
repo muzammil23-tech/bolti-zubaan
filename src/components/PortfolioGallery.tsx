@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { ArrowUpRight, X, ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, glassTint } from "@/lib/utils";
 import { Reveal } from "@/components/Reveal";
 import p1 from "@/assets/portfolio-1.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
@@ -254,7 +254,10 @@ export const PortfolioGallery = () => {
           >
           <button
             onClick={() => setOpenIndex(i)}
-            className="absolute inset-0 h-full w-full overflow-hidden rounded-2xl border border-border bg-card text-left outline-none transition-colors duration-500 hover:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent"
+            className={cn(
+              "absolute inset-0 h-full w-full overflow-hidden rounded-2xl border text-left outline-none transition-colors duration-500 hover:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent",
+              p.featured ? "glass-tint-orange" : glassTint(i + 1),
+            )}
           >
             <ThumbImage src={p.img} alt={`${p.title} — ${p.category}`} />
             {/* Base subtle overlay */}
