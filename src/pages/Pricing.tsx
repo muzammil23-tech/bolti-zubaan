@@ -26,50 +26,52 @@ const Pricing = () => (
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-3">
           {pricingTiers.map((t, i) => (
-            <Reveal key={t.name} animation="scale-in" delay={i * 90} className="h-full">
+            <Reveal key={t.name} animation="scale-in" delay={i * 120} className="h-full">
               <TiltCard max={7} className="h-full">
-              <div
-                className={`glass-card glow-border relative flex h-full flex-col rounded-3xl border p-7 shadow-card transition-smooth hover:-translate-y-2 sm:p-8 ${
-                  t.popular ? "border-accent bg-card shadow-accent" : "border-border bg-card"
-                }`}
-              >
-                {t.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-accent px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
-                    Most Popular
-                  </span>
-                )}
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-primary">{t.name}</h3>
-                  <LogoMark size={34} glow={false} />
+                <div
+                  className={`glass-card glow-border relative flex h-full flex-col rounded-3xl border p-7 shadow-card transition-smooth hover:-translate-y-2 sm:p-8 ${
+                    t.popular ? "glass-tint-orange border-accent shadow-accent" : i === 0 ? "glass-tint-blue" : "glass-tint-violet"
+                  }`}
+                >
+                  {t.popular && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-accent px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
+                      Most Popular
+                    </span>
+                  )}
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-primary">{t.name}</h3>
+                    <LogoMark size={34} glow={false} />
+                  </div>
+                  <p className="mt-1 text-sm text-muted-foreground">{t.tagline}</p>
+                  <div className="mt-5 flex items-end gap-1">
+                    <span className="text-xs font-semibold text-accent">PKR</span>
+                    <span className="heading-tight text-4xl font-bold text-primary">{t.price}</span>
+                  </div>
+                  <ul className="mt-6 flex-1 space-y-2.5">
+                    {t.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-foreground">
+                        <Check className="mt-0.5 h-4 w-4 flex-none text-accent" /> {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <MagneticButton className="mt-7">
+                    <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                      <Button
+                        className={`btn-lift w-full ${
+                          t.popular
+                            ? "btn-sheen bg-gradient-accent text-accent-foreground shadow-accent"
+                            : "border border-accent/40 bg-transparent text-accent hover:bg-accent/10"
+                        }`}
+                      >
+                        Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </a>
+                  </MagneticButton>
                 </div>
-                <p className="mt-1 text-sm text-muted-foreground">{t.tagline}</p>
-                <div className="mt-5 flex items-end gap-1">
-                  <span className="text-xs font-semibold text-accent">PKR</span>
-                  <span className="heading-tight text-4xl font-bold text-primary">{t.price}</span>
-                </div>
-                <ul className="mt-6 flex-1 space-y-2.5">
-                  {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-foreground">
-                      <Check className="mt-0.5 h-4 w-4 flex-none text-accent" /> {f}
-                    </li>
-                  ))}
-                </ul>
-                <MagneticButton className="mt-7">
-                  <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                    <Button
-                      className={`btn-lift w-full ${
-                        t.popular
-                          ? "btn-sheen bg-gradient-accent text-accent-foreground shadow-accent"
-                          : "border border-accent/40 bg-transparent text-accent hover:bg-accent/10"
-                      }`}
-                    >
-                      Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </a>
-                </MagneticButton>
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
+
         </div>
       </div>
     </section>
