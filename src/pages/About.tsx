@@ -13,6 +13,7 @@ import { ClientLogos } from "@/components/ClientLogos";
 import { AmbientShapes } from "@/components/AmbientShapes";
 import { SectionDivider } from "@/components/SectionDivider";
 import { whyUs, comparison, WHATSAPP } from "@/data/site";
+import { glassTint } from "@/lib/utils";
 import logoAsset from "@/assets/logo.jpg.asset.json";
 
 const timeline = [

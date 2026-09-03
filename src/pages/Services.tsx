@@ -12,6 +12,7 @@ import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { AmbientShapes } from "@/components/AmbientShapes";
 import { SectionDivider } from "@/components/SectionDivider";
 import { services, WHATSAPP } from "@/data/site";
+import { glassTint } from "@/lib/utils";
 
 const Services = () => (
   <SiteLayout transparentHeader>

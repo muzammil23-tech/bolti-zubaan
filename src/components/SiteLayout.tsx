@@ -94,7 +94,7 @@ export const SiteLayout = ({ children, transparentHeader = false, hideCta = fals
                 end={l.to === "/"}
                 className={({ isActive }) =>
                   `nav-underline text-sm font-medium transition-smooth hover:text-accent ${
-                    isActive ? "text-accent" : "text-muted-foreground"
+                    isActive ? "is-active text-accent" : "text-muted-foreground"
                   }`
                 }
               >

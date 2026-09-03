@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { ArrowUpRight, X, ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, glassTint } from "@/lib/utils";
 import { Reveal } from "@/components/Reveal";
 import p1 from "@/assets/portfolio-1.jpg";
 import p2 from "@/assets/portfolio-2.jpg";

@@ -11,6 +11,7 @@ import { LogoMark } from "@/components/LogoMark";
 import { AmbientShapes } from "@/components/AmbientShapes";
 import { SectionDivider } from "@/components/SectionDivider";
 import { faqs, EMAIL, PHONE, WHATSAPP } from "@/data/site";
+import { glassTint } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const socials = [

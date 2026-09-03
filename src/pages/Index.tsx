@@ -23,6 +23,7 @@ import { AmbientShapes } from "@/components/AmbientShapes";
 import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { BlogHighlights } from "@/components/BlogHighlights";
 import { services, whyUs, pricingTiers, testimonials, WHATSAPP } from "@/data/site";
+import { glassTint } from "@/lib/utils";
 import heroVisual from "@/assets/hero-visual.jpg";
 
 const Index = () => (
