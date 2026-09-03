@@ -295,9 +295,18 @@ All colors MUST be HSL.
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .nav-underline:hover::after,
-  .nav-underline:focus-visible::after {
+  .nav-underline:focus-visible::after,
+  .nav-underline.is-active::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  /* Subtle animated glow layer for inner page banners */
+  .page-header-glow {
+    background: radial-gradient(ellipse at 70% 25%, hsl(var(--accent) / 0.2), transparent 55%),
+      radial-gradient(ellipse at 20% 85%, hsl(214 90% 58% / 0.13), transparent 50%);
+    animation: gradient-shift 16s ease-in-out infinite;
+    background-size: 180% 180%;
   }
 
   /* Section divider — thin animated gradient line */
