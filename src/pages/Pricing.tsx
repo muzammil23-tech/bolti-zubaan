@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { LogoMark } from "@/components/LogoMark";
 import { AmbientShapes } from "@/components/AmbientShapes";
 import { MagneticButton } from "@/components/MagneticButton";
+import { TiltCard } from "@/components/TiltCard";
 import { SectionDivider } from "@/components/SectionDivider";
 import { pricingTiers, comparisonTable, faqs, WHATSAPP } from "@/data/site";
 
