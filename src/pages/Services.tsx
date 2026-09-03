@@ -54,7 +54,7 @@ const Services = () => (
           {services.map((s, i) => (
             <Reveal key={s.title} animation={i % 2 === 0 ? "slide-in-left" : "slide-in-right"} delay={i * 60}>
               <TiltCard max={6} className="h-full">
-                <article className="glass-card flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-card transition-smooth hover:border-accent/40 sm:p-8">
+                <article className={`glass-card ${glassTint(i)} flex h-full flex-col rounded-3xl border p-6 shadow-card transition-smooth hover:border-accent/40 sm:p-8`}>
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-gradient-accent shadow-accent">
                       <s.icon className="h-6 w-6 text-accent-foreground" />

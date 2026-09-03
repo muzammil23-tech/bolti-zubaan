@@ -145,7 +145,7 @@ const Index = () => (
           {services.slice(0, 6).map((s, i) => (
             <Reveal key={s.title} animation="scale-in" delay={i * 70}>
               <TiltCard max={7} className="h-full">
-                <div className="glass-card glow-border h-full rounded-3xl border border-border bg-card p-6 shadow-card transition-smooth hover:border-accent/40">
+                <div className={`glass-card ${glassTint(i)} glow-border h-full rounded-3xl border p-6 shadow-card transition-smooth hover:border-accent/40`}>
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent shadow-accent">
                     <s.icon className="h-6 w-6 text-accent-foreground" />
                   </div>
@@ -232,7 +232,7 @@ const Index = () => (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {whyUs.map((w, i) => (
             <Reveal key={w.title} delay={i * 80}>
-              <div className="glass-card h-full rounded-3xl border border-border bg-card p-6 text-center shadow-card transition-smooth hover:-translate-y-2 hover:border-accent/40">
+              <div className={`glass-card ${glassTint(i + 1)} h-full rounded-3xl border p-6 text-center shadow-card transition-smooth hover:-translate-y-2 hover:border-accent/40`}>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent shadow-accent">
                   <w.icon className="h-6 w-6 text-accent-foreground" />
                 </div>
@@ -261,9 +261,7 @@ const Index = () => (
             <Reveal key={t.name} animation="scale-in" delay={i * 90}>
               <TiltCard max={6} className="h-full">
                 <div
-                  className={`glass-card relative flex h-full flex-col rounded-3xl border bg-card p-7 shadow-card ${
-                    t.popular ? "border-accent/60 shadow-accent" : "border-border"
-                  }`}
+                  className={`glass-card ${t.popular ? "glass-tint-orange border-accent/60 shadow-accent" : glassTint(i + 1)} relative flex h-full flex-col rounded-3xl border p-7 shadow-card`}
                 >
                   {t.popular && (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground shadow-accent">
@@ -315,7 +313,7 @@ const Index = () => (
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.slice(0, 3).map((t, i) => (
             <Reveal key={t.name} delay={i * 90}>
-              <div className="glass-card h-full rounded-3xl border border-border bg-card/70 p-6 shadow-card backdrop-blur-xl">
+              <div className={`glass-card ${glassTint(i + 2)} h-full rounded-3xl border p-6 shadow-card backdrop-blur-xl`}>
                 <Quote className="h-7 w-7 text-accent/60" />
                 <p className="mt-4 text-sm leading-relaxed text-foreground">{t.text}</p>
                 <div className="mt-5 flex items-center gap-1">

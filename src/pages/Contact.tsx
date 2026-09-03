@@ -62,7 +62,7 @@ const Contact = () => (
                 href={a.href}
                 target={a.href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className="glass-card glow-border flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-card transition-smooth hover:-translate-y-1 hover:border-accent/50"
+                className={`glass-card ${glassTint(i)} glow-border flex h-full flex-col rounded-3xl border p-6 shadow-card transition-smooth hover:-translate-y-1 hover:border-accent/50`}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent shadow-accent">
                   <a.icon className="h-6 w-6 text-accent-foreground" />
@@ -82,7 +82,7 @@ const Contact = () => (
       <AmbientShapes variant="a" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
         <Reveal animation="slide-in-left">
-          <div className="glass-card relative rounded-3xl border border-border bg-card p-6 shadow-elegant sm:p-9">
+          <div className="glass-card glass-tint-orange relative rounded-3xl border p-6 shadow-elegant sm:p-9">
             <div className="pointer-events-none absolute right-6 top-6 opacity-[0.06] animate-float hidden sm:block">
               <LogoMark size={110} glow={false} label={false} />
             </div>
@@ -100,7 +100,7 @@ const Contact = () => (
         </Reveal>
 
         <Reveal animation="slide-in-right" delay={80} className="space-y-6">
-          <div className="glass-card rounded-3xl border border-border bg-card p-6 shadow-card sm:p-7">
+          <div className="glass-card glass-tint-blue rounded-3xl border p-6 shadow-card sm:p-7">
             <Eyebrow>Studio</Eyebrow>
             <ul className="mt-5 space-y-4 text-sm">
               <li className="flex items-start gap-3">
@@ -160,7 +160,7 @@ const Contact = () => (
           </h2>
         </Reveal>
         <Reveal delay={80}>
-          <Accordion type="single" collapsible className="glass-card rounded-3xl border border-border bg-card px-4 shadow-card sm:px-6">
+          <Accordion type="single" collapsible className="glass-card glass-tint-violet rounded-3xl border px-4 shadow-card sm:px-6">
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`}>
                 <AccordionTrigger className="text-left text-sm font-semibold text-primary hover:text-accent sm:text-base">
