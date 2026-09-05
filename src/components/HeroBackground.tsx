@@ -1,16 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const HeroBackground = () => {
-  const [y, setY] = useState(0);
+  const slowRef = useRef<SVGSVGElement>(null);
+  const midRef = useRef<HTMLDivElement>(null);
+  const fastRef = useRef<HTMLDivElement>(null);
+  const upRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        setY(window.scrollY);
-        raf = 0;
-      });
+    const apply = () => {
+      raf = 0;
+      const y = window.scrollY;
+      // Skip work entirely once the hero is scrolled far out of view
+      if (y > window.innerHeight * 1.5) return;
+      if (slowRef.current) slowRef.current.style.transform = `translate3d(0, ${y * 0.15}px, 0)`;
+      if (midRef.current) midRef.current.style.transform = `translate3d(0, ${y * 0.28}px, 0)`;
+      if (fastRef.current) fastRef.current.style.transform = `translate3d(0, ${y * 0.4}px, 0)`;
+      if (upRef.current) upRef.current.style.transform = `translate3d(0, ${y * -0.28}px, 0)`;
     };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    apply();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -18,12 +31,8 @@ export const HeroBackground = () => {
     };
   }, []);
 
-  const slow = y * 0.15;
-  const mid = y * 0.28;
-  const fast = y * 0.4;
-
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden [contain:paint]">
       {/* Dot grid */}
       <div
         className="absolute inset-0 opacity-[0.18]"
@@ -40,8 +49,8 @@ export const HeroBackground = () => {
 
       {/* Workflow / node network SVG — subtle parallax */}
       <svg
+        ref={slowRef}
         className="absolute inset-0 h-full w-full opacity-60 will-change-transform"
-        style={{ transform: `translate3d(0, ${slow}px, 0)` }}
         viewBox="0 0 1200 700"
         preserveAspectRatio="xMidYMid slice"
         aria-hidden="true"
@@ -64,22 +73,19 @@ export const HeroBackground = () => {
           "M 520 220 Q 720 260 940 160",
           "M 200 500 Q 420 460 620 560",
           "M 620 560 Q 820 600 1080 480",
-          "M 940 160 Q 1000 320 940 480",
-          "M 80 140 Q 140 320 200 500",
         ].map((d, i) => (
-          <g key={i}>
-            <path
-              d={d}
-              fill="none"
-              stroke="url(#linkGrad)"
-              strokeWidth="1.5"
-              strokeDasharray="6 8"
-              style={{
-                animation: `dash-flow ${6 + i}s linear infinite`,
-                animationDelay: `${i * 0.4}s`,
-              }}
-            />
-          </g>
+          <path
+            key={i}
+            d={d}
+            fill="none"
+            stroke="url(#linkGrad)"
+            strokeWidth="1.5"
+            strokeDasharray="6 8"
+            style={{
+              animation: `dash-flow ${8 + i}s linear infinite`,
+              animationDelay: `${i * 0.4}s`,
+            }}
+          />
         ))}
 
         {/* Nodes */}
@@ -89,30 +95,26 @@ export const HeroBackground = () => {
         ].map(([cx, cy], i) => (
           <g key={i}>
             <circle cx={cx} cy={cy} r="14" fill="url(#nodeGrad)" opacity="0.35">
-              <animate attributeName="r" values="14;20;14" dur={`${3 + (i % 3)}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.35;0.1;0.35" dur={`${3 + (i % 3)}s`} repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.35;0.1;0.35" dur={`${4 + (i % 3)}s`} repeatCount="indefinite" />
             </circle>
             <circle cx={cx} cy={cy} r="4" fill="hsl(22 95% 65%)" />
-            <circle cx={cx} cy={cy} r="4" fill="none" stroke="hsl(22 95% 65% / 0.6)" strokeWidth="1">
-              <animate attributeName="r" values="4;12;4" dur="2.4s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
-              <animate attributeName="opacity" values="0.8;0;0.8" dur="2.4s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
-            </circle>
           </g>
         ))}
       </svg>
 
       {/* Drifting orbs — layered parallax */}
       <div
+        ref={midRef}
         className="absolute left-[10%] top-[15%] h-64 w-64 rounded-full bg-accent/25 blur-3xl animate-float will-change-transform"
-        style={{ transform: `translate3d(0, ${mid}px, 0)` }}
       />
       <div
-        className="absolute right-[8%] top-[55%] h-72 w-72 rounded-full bg-primary-glow/40 blur-3xl animate-float will-change-transform"
-        style={{ animationDelay: "1.2s", animationDuration: "8s", transform: `translate3d(0, ${fast}px, 0)` }}
+        ref={fastRef}
+        className="absolute right-[8%] top-[55%] hidden h-72 w-72 rounded-full bg-primary-glow/40 blur-3xl animate-float will-change-transform md:block"
+        style={{ animationDelay: "1.2s", animationDuration: "8s" }}
       />
       <div
-        className="absolute left-[40%] bottom-[8%] h-56 w-56 rounded-full bg-accent/15 blur-3xl animate-glow-pulse will-change-transform"
-        style={{ animationDelay: "0.6s", transform: `translate3d(0, ${-mid}px, 0)` }}
+        ref={upRef}
+        className="absolute left-[40%] bottom-[8%] hidden h-56 w-56 rounded-full bg-accent/15 blur-3xl md:block will-change-transform"
       />
       {/* Subtle noise/scanline effect via gradient */}
       <div

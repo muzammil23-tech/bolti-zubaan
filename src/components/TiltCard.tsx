@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface TiltCardProps {
@@ -10,19 +10,35 @@ interface TiltCardProps {
 
 export const TiltCard = ({ children, className, max = 10, glare = true }: TiltCardProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const raf = useRef(0);
+  const enabled = useRef(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)");
+    enabled.current = !mq.matches;
+    const onChange = () => (enabled.current = !mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => {
+      mq.removeEventListener("change", onChange);
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
+  }, []);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    const ry = (px - 0.5) * (max * 2);
-    const rx = (0.5 - py) * (max * 2);
-    el.style.setProperty("--tilt-x", `${rx}deg`);
-    el.style.setProperty("--tilt-y", `${ry}deg`);
-    el.style.setProperty("--glare-x", `${px * 100}%`);
-    el.style.setProperty("--glare-y", `${py * 100}%`);
+    if (!enabled.current || raf.current) return;
+    const { clientX, clientY } = e;
+    raf.current = requestAnimationFrame(() => {
+      raf.current = 0;
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const px = (clientX - rect.left) / rect.width;
+      const py = (clientY - rect.top) / rect.height;
+      el.style.setProperty("--tilt-x", `${(0.5 - py) * (max * 2)}deg`);
+      el.style.setProperty("--tilt-y", `${(px - 0.5) * (max * 2)}deg`);
+      el.style.setProperty("--glare-x", `${px * 100}%`);
+      el.style.setProperty("--glare-y", `${py * 100}%`);
+    });
   };
 
   const onLeave = () => {
