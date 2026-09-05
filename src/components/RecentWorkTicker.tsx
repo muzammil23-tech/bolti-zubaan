@@ -26,7 +26,7 @@ export const RecentWorkTicker = () => {
       <div className="flex whitespace-nowrap animate-marquee">
         {[...items, ...items].map((it, i) => (
           <div key={i} className="group mx-3 flex shrink-0 items-center gap-3 rounded-full border border-border bg-background/60 py-2 pl-2 pr-5 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60">
-            <img src={it.img} alt={it.name} className="h-10 w-10 rounded-full object-cover ring-2 ring-accent/30 transition-transform duration-500 group-hover:scale-110" />
+            <img src={it.img} alt={it.name} loading="lazy" decoding="async" className="h-10 w-10 rounded-full object-cover ring-2 ring-accent/30 transition-transform duration-500 group-hover:scale-110" />
             <div className="leading-tight">
               <div className="text-xs font-semibold text-primary">{it.name}</div>
               <div className="text-[10px] uppercase tracking-widest text-accent">{it.tag}</div>

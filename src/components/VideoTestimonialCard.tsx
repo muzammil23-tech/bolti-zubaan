@@ -5,7 +5,7 @@ export const VideoTestimonialCard = () => {
   return (
     <div className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card">
       <div className="relative aspect-video overflow-hidden">
-        <img src={portfolioImg} alt="Client story" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <img src={portfolioImg} alt="Client story" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
         <button
           aria-label="Play testimonial video"

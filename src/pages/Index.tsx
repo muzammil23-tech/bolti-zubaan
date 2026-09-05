@@ -116,6 +116,9 @@ const Index = () => (
                 alt="Digital agency dashboard visualization"
                 width={1200}
                 height={1008}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="relative block w-full rounded-[1.45rem]"
               />
             </div>

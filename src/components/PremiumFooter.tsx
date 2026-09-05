@@ -36,8 +36,8 @@ export const PremiumFooter = () => {
         <div className="absolute inset-0 bg-animated-gradient-soft" />
       </div>
 
-      <div className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/15 blur-3xl animate-glow-pulse" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-96 w-96 rounded-full bg-accent-glow/10 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
+      <div className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/15 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 bottom-0 hidden h-96 w-96 rounded-full bg-accent-glow/10 blur-3xl md:block" />
       <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-20 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
 
       <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8">
