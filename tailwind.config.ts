@@ -127,7 +127,7 @@ export default {
         "slide-in-right": "slide-in-right 0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
         "float": "float 6s ease-in-out infinite",
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
-        "marquee": "marquee 30s linear infinite",
+        "marquee": "marquee 42s linear infinite",
         "shimmer": "shimmer 3s linear infinite",
       },
     },
