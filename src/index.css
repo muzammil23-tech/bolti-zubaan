@@ -359,7 +359,7 @@ All colors MUST be HSL.
       hsl(222 65% 14%) 100%
     );
     background-size: 260% 260%;
-    animation: gradient-shift 14s ease-in-out infinite;
+    animation: gradient-shift 24s ease-in-out infinite;
   }
   .bg-animated-gradient-soft {
     background: linear-gradient(
@@ -369,7 +369,7 @@ All colors MUST be HSL.
       hsl(222 65% 18% / 0.95) 100%
     );
     background-size: 220% 220%;
-    animation: gradient-shift 12s ease-in-out infinite;
+    animation: gradient-shift 22s ease-in-out infinite;
   }
 
   /* Subtle grain / film noise overlay */
@@ -603,4 +603,34 @@ All colors MUST be HSL.
   /* Editorial rhythm helpers */
   .section-pad { @apply py-24 sm:py-28 lg:py-36; }
   .heading-tight { letter-spacing: -0.03em; }
+}
+
+/* ---------- Performance & motion preferences ---------- */
+@layer utilities {
+  /* Isolate continuously animated blocks so they don't repaint neighbours */
+  .paint-contain { contain: paint; }
+}
+
+/* Marquee / continuous transforms stay on the compositor */
+.animate-marquee,
+.animate-float,
+.animate-float-3d,
+.animate-spin-slow {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bg-animated-gradient,
+  .bg-animated-gradient-soft {
+    background-size: 100% 100% !important;
+  }
 }

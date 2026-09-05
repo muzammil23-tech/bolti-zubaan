@@ -1,27 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const ScrollProgress = () => {
-  const [progress, setProgress] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      // scaleX only — no layout/paint of width
+      if (barRef.current) barRef.current.style.transform = `scaleX(${pct / 100})`;
     };
-    onScroll();
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
-    <div className="fixed left-0 top-0 z-[70] h-[3px] w-full bg-transparent">
+    <div className="pointer-events-none fixed left-0 top-0 z-[70] h-[3px] w-full bg-transparent">
       <div
-        className="h-full bg-gradient-accent shadow-accent transition-[width] duration-150 ease-out"
-        style={{ width: `${progress}%` }}
+        ref={barRef}
+        className="h-full w-full origin-left bg-gradient-accent will-change-transform"
+        style={{ transform: "scaleX(0)" }}
       />
     </div>
   );

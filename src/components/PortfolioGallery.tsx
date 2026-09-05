@@ -319,6 +319,7 @@ export const PortfolioGallery = () => {
               <img
                 src={activeProject.img}
                 alt={activeProject.title}
+                decoding="async"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-card/40" />

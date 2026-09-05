@@ -63,7 +63,7 @@ export default function BlogPost() {
         <h1 className="mt-3 text-4xl font-bold text-primary md:text-5xl">{post.title}</h1>
         {post.excerpt && <p className="mt-4 text-lg text-muted-foreground">{post.excerpt}</p>}
         {post.cover_image_url && (
-          <img src={post.cover_image_url} alt={post.title} className="mt-8 w-full rounded-2xl shadow-elegant" />
+          <img src={post.cover_image_url} alt={post.title} loading="lazy" decoding="async" className="mt-8 w-full rounded-2xl shadow-elegant" />
         )}
         <div className="prose prose-lg mt-10 max-w-none whitespace-pre-wrap text-foreground leading-relaxed">
           {post.content}

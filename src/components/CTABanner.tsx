@@ -8,7 +8,7 @@ const WHATSAPP = "https://wa.me/923102523274";
 
 export const CTABanner = () => {
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-8 lg:px-8">
+    <section className="mx-auto max-w-7xl px-5 pb-16 pt-8 md:pb-24 lg:px-8">
       <Reveal animation="scale-in">
         <div className="grain-overlay relative overflow-hidden rounded-3xl bg-animated-gradient p-10 shadow-elegant md:p-16">
           <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />

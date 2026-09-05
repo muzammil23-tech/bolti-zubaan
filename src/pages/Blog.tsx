@@ -65,7 +65,7 @@ export default function Blog() {
             <Link key={p.id} to={`/blog/${p.slug}`} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-smooth hover:-translate-y-1 hover:border-accent/40 hover:shadow-elegant">
               {p.cover_image_url && (
                 <div className="aspect-[16/9] overflow-hidden bg-secondary">
-                  <img src={p.cover_image_url} alt={p.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={p.cover_image_url} alt={p.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
               )}
               <div className="p-6">
